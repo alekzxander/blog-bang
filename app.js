@@ -22,7 +22,7 @@ var now = new Date();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(express.static(__dirname + '/public'));
 
 /***************Mongodb configuratrion********************/
 var mongoose = require('mongoose');

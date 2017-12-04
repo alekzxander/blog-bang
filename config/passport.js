@@ -84,7 +84,6 @@ module.exports = function(passport) {
                     newUser.updated_date = day;
                     newUser.status = 'active'; //inactive for email actiavators
                     newUser.active_hash = active_code;
-                    newUser._id = userdata[0]._id+1;
 
 
                 // save the user

@@ -1,4 +1,5 @@
 var home = require('../app/controllers/home');
+var articleController = require('../app/controllers/articleController');
 
 //you can include all your controllers
 
@@ -6,6 +7,10 @@ module.exports = function (app, passport) {
 
     app.get('/login', home.login);
     app.get('/signup', home.signup);
+
+    /* Admin */
+    app.get('/admin/dashboard');
+    app.get('/admin/creer-article', articleController.create);
 
     app.get('/', home.loggedIn, home.home);//home
     app.get('/home', home.loggedIn, home.home);//home
