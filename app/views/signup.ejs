@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/form-elements.css">
+    <link rel="stylesheet" href="/izitoast/dist/css/iziToast.min.css">
+
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -82,7 +83,7 @@
                 </div>
 
 
-                <button type="submit" class="btn">Sign in!</button>
+                <button type="submit" id="infoClick" class="btn">Sign in!</button>
             </form>
 
         </div>
@@ -113,16 +114,100 @@
     </div>
 
 
-<<<<<<< HEAD
-<!-- Javascript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="/js/scripts.js"></script>
-=======
+
     <!-- Javascript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
->>>>>>> 22e70d66b96066d054ccc1b5fa53c9eb0b493896
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+        <script src="public/js/scripts.js"></script>
+    <script src="/izitoast/dist/js/iziToast.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        iziToast.settings({
+      timeout: 3000, // default timeout
+
+      resetOnHover: true,
+      // icon: '', // icon class
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+      onOpen: function () {
+        console.log('callback abriu!');
+      },
+      onClose: function () {
+        console.log("callback fechou!");
+      }
+      
+  });
+        
+    
+
+    // info
+    $('#infoClick').click(function () {
+
+        iziToast.info({position: "center", title: 'Hello', message: 'iziToast.info()'});
+    }); // ! click
+
+    // success
+    $('#successClick').click(function () {
+        iziToast.success({timeout: 2000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
+    }); // ! .click
+
+    // warning
+    $('#warningClick').click(function () {
+        iziToast.warning({position: "bottomLeft", title: 'Caution', message: 'attention'});
+   
+
+    });
+
+    // error
+    $('#errorClick').click(function () {
+        iziToast.error({title: 'Error', class:'test', message: 'Illegal operation'});
+        document.addEventListener('iziToast-open', function(data){
+        
+    if(data.settings.class == 'test'){ // data.detail will have all toast settings.
+        alert('EventListener iziToast-open');
+    }
+});
+
+    });
+
+    // custom toast
+    $('#customClick').click(function () {
+
+        iziToast.show({
+            color: 'dark',
+            icon: 'fa fa-user',
+            title: 'Hey',
+            message: 'Custom Toast!',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        buttons: [
+        [
+        '<button>Ok</button>',
+        function (instance, toast) {
+            alert("Hello world!");
+        }
+        ],
+        [
+        '<button>Close</button>',
+        function (instance, toast) {
+            instance.hide(toast,{
+                transitionOut: 'fadeOutUp'
+            });
+        }
+        ]
+        ]
+    });
+        
+
+    }); 
+
+   
+    
+
+
+</script>
+
 
 </body>
 
