@@ -40,7 +40,6 @@
     "underscore": "latest"
   },
   "scripts": {
-  "start": "nodemon app.js" }
-
-  
+    "start": "nodemon app.js"
+  }
 }

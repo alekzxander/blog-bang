@@ -9,8 +9,13 @@ module.exports = function (app, passport) {
     app.get('/signup', home.signup);
 
     /* Admin */
-    app.get('/admin/dashboard');
+    app.get('/admin/dashboard', home.home);
+
     app.get('/admin/creer-article', articleController.create);
+    app.get('/admin/liste-articles', articleController.list);
+
+    app.post('/post-article', articleController.postArticle);
+
 
     app.get('/',(req, res)=>{
         res.render('index.ejs')
@@ -28,6 +33,4 @@ module.exports = function (app, passport) {
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
-
-
 }
