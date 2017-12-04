@@ -1,6 +1,7 @@
+var LocalStrategy = require('passport-local').Strategy;
 
+var User = require('../app/models/user');
 var bcrypt = require('bcrypt-nodejs');
-
 var constant = require('../config/constants');
 var dateFormat = require('dateformat');
 var fs = require('fs');
@@ -73,14 +74,14 @@ module.exports = function(passport) {
            	  var active_code=bcrypt.hashSync(Math.floor((Math.random() * 99999999) *54), null, null);
            	 
                
-                    newUser.mail    = email;
+                    newUser.email    = email;
                     newUser.password = newUser.generateHash(password);
                     newUser.name = req.body.username;
                     newUser.created_date = day;
                     newUser.updated_date = day;
                     newUser.status = 'active'; //inactive for email actiavators
-                    newUser.active_hash = active_code;
-                    newUser._id = userdata[0]._id+1;
+
+        
 
 
                 // save the user
@@ -129,7 +130,7 @@ module.exports = function(passport) {
     	
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'mail' :  email }, function(err, user) {
+        User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             
             if (err)
