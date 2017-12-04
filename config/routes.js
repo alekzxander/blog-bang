@@ -1,4 +1,6 @@
 var home = require('../app/controllers/home');
+const permissions = require('./permissions');
+
 var articleController = require('../app/controllers/articleController');
 
 //you can include all your controllers
@@ -9,7 +11,9 @@ module.exports = function (app, passport) {
     app.get('/signup', home.signup);
 
     /* Admin */
-    app.get('/admin/dashboard');
+    app.get('/admin/dashboard', (req, res)=>{
+        res.render('admin/dashboard.ejs')
+    });
     app.get('/admin/creer-article', articleController.create);
 
     app.get('/',(req, res)=>{
@@ -18,12 +22,12 @@ module.exports = function (app, passport) {
 
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/home', // redirect to the secure profile section
+        successRedirect: '/', // redirect to the secure profile section
         failureRedirect: '/signup', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
     // process the login form
-    app.post('/login', (req, res) => {
+    app.post('/login', (req, res, next) => {
         //Redirect user according to role
         passport.authenticate('local-login', (err, user, info) => {
                 if (err) {
@@ -39,8 +43,8 @@ module.exports = function (app, passport) {
                     }
 
                     //redirect the user to dashboard when it's an admin
-                    if (user.local.role === 'admin') {
-                        return res.redirect('/dashbord');
+                    if (user.role === 'admin') {
+                        return res.redirect('admin/dashbord');
                     }
                     //redirect user to the homepage for no admin user
                     return res.redirect('/');
@@ -48,6 +52,9 @@ module.exports = function (app, passport) {
             })
             (req, res); //<-- give access to req and res for the callback of authenticate
     });
-
-
+    
+    app.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
 }

@@ -34,7 +34,7 @@ exports.signup = function(req, res) {
 
 	if (req.session.user) {
 
-		res.redirect('/home');
+		res.redirect('/');
 
 	} else {
 
