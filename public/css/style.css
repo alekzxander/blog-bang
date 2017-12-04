@@ -67,7 +67,7 @@ hr
 }
 .post-recent 
 {
-	margin-bottom: 200px;
+	margin-bottom: 60px;
 }
 .post-recent hr 
 {
@@ -90,8 +90,19 @@ hr
 .post-pop h4
 {
 	text-align:center;
-	border: 2px solid #2D2C2C;
+	border: 1px solid #d3d3d3;
 	padding: 10px;
-
-
+	margin-bottom: 40px;
+}
+.post-pop p 
+{
+	text-align: center;
+	margin-top: 27px;
+	color: #6e6e6e;
+}
+.post-pop a
+{
+	color: #75aa75;
+	border-bottom: 0.1px solid #75aa75;
+	padding-bottom: 3px;
 }
