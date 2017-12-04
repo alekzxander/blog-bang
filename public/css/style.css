@@ -18,6 +18,9 @@
    top: 60%;
    text-align: center;
 }
+.navbar-default .navbar-nav>li>a {
+	margin-right: 40px;
+}
 .troteur h3 
 {
 	font-weight: bold;
@@ -39,16 +42,18 @@ hr
 }
 .formulaire-mail
 {
-	height: 100px;
+	padding-top: 34px;
+	padding-bottom: 15px;
+	padding-right: 24px;
+	padding-left: 24px;
 	background: #f7f7f7;
 	margin-top: 60px;
-	margin-bottom: 120px;
-	padding: 40px;
-   
+	margin-bottom: 71px;
 }
 .formulaire-mail p
 {
    color: grey;
+   margin-top: 6px;
 } 
 .btn-default
 {
@@ -67,8 +72,9 @@ hr
 }
 .post-recent 
 {
-	margin-bottom: 200px;
+	margin-bottom: 30px;
 }
+
 .post-recent hr 
 {
 	margin-top: 50px;
@@ -87,11 +93,40 @@ hr
 	font-size: 13px;
 	color: #75aa75;
 }
-.post-pop h4
+.post-recent a
+{
+	text-decoration: none;
+	color: #272727;
+}
+.post-recent a:hover
+{
+	color: #6D6D6D;
+}
+.populaire
 {
 	text-align:center;
-	border: 2px solid #2D2C2C;
+	border: 1px solid #d3d3d3;
 	padding: 10px;
-
-
+	margin-bottom: 40px;
+}
+.post-pop p 
+{
+	text-align: center;
+	margin-top: 27px;
+	color: #6e6e6e;
+}
+.post-pop a
+{
+	color: #75aa75;
+	border-bottom: 0.1px solid #75aa75;
+	padding-bottom: 3px;
+}
+.post-pop a:hover
+{
+	text-decoration: none;
+}
+footer 
+{
+	height: 200px;
+	background: #262626;
 }
