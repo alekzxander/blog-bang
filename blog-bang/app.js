@@ -28,8 +28,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 //configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
-
+// connect to our database
+mongoose.connect(configDB.url, { useMongoClient: true });
+mongoose.Promise = global.Promise;
 
 require('./config/passport')(passport); // pass passport for configuration
 

@@ -1,6 +1,7 @@
 var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
+var Article = require('../models/article.js')
 
 exports.loggedIn = function(req, res, next)
 {
