@@ -2,10 +2,6 @@
   "name": "blog-bang",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
-  },
   "dependencies": {
     "async": "latest",
     "basic-auth-connect": "latest",
@@ -43,7 +39,8 @@
     "simple-encryptor": "latest",
     "underscore": "latest"
   },
-  "script": {
-    "start": "nodemon app.js"
-  }
+  "scripts": {
+  "start": "nodemon app.js" }
+
+  
 }
