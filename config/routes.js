@@ -1,12 +1,12 @@
-var home = require('../app/controllers/home');
+var userController = require('../app/controllers/userController');
 var articleController = require('../app/controllers/articleController');
 
 //you can include all your controllers
 
 module.exports = function (app, passport) {
 
-    app.get('/login', home.login);
-    app.get('/signup', home.signup);
+    app.get('/login', userController.login);
+    app.get('/signup', userController.signup);
 
     /* Admin */
     app.get('/admin/dashboard');
@@ -28,6 +28,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
+    app.get('/sendMail',userController.mailer)
 
 
 }
