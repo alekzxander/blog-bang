@@ -1,4 +1,5 @@
 var home = require('../app/controllers/home');
+var articleController = require('../app/controllers/articleController');
 
 //you can include all your controllers
 
@@ -7,8 +8,14 @@ module.exports = function (app, passport) {
     app.get('/login', home.login);
     app.get('/signup', home.signup);
 
-    app.get('/', home.loggedIn, home.home);//home
-    app.get('/home', home.loggedIn, home.home);//home
+    /* Admin */
+    app.get('/admin/dashboard');
+    app.get('/admin/creer-article', articleController.create);
+
+    app.get('/',(req, res)=>{
+        res.render('index.ejs')
+    } );//home
+
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/home', // redirect to the secure profile section

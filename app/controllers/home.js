@@ -20,7 +20,7 @@ exports.loggedIn = function(req, res, next)
 exports.home = function(req, res) {
 	
 	
-	res.render('home.ejs', {
+	res.render('admin/dashboard.ejs', {
 		error : req.flash("error"),
 		success: req.flash("success"),
 		session:req.session,
@@ -67,6 +67,7 @@ exports.login = function(req, res) {
 	}
 	
 }
+
 
 
     
