@@ -11,7 +11,7 @@ module.exports = function (app, passport) {
     app.get('/signup', userController.signup);
 
     /* Admin */
-    app.get('/admin/dashboard', (req, res)=>{
+    app.get('/admin/dashboard', permissions.can('access admin page'), (req, res)=>{
         res.render('admin/dashboard.ejs')
     });
     app.get('/admin/creer-article', articleController.create);
