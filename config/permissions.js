@@ -15,14 +15,14 @@ var permissions = new ConnectRoles({
 
 
 permissions.use('Accès page admin', (req) => {
-    if (req.user !== undefined && req.user.local.role === 'admin') {
+    if (req.user !== undefined && req.user.role === 'admin') {
         return true;
     }
 })
 
 //admin users can access all pages
 permissions.use(function (req) {
-    if (req.user !== undefined && req.user.local.role === 'admin') {
+    if (req.user !== undefined && req.user.role === 'admin') {
         return true;
     }
 });
