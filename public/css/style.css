@@ -74,6 +74,11 @@ hr
 {
 	margin-bottom: 30px;
 }
+.post-recent .img-responsive 
+{
+	min-height: 221px;
+	max-height: 221px;
+}
 
 .post-recent hr 
 {
