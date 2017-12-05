@@ -64,9 +64,6 @@
     <div class="row">
       <div class="col-md-5">
         <p>Laissez nous votre email pour recevoir des newsletter</p>
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-        </label>
       </div>
       <form>
         <div class="col-md-2">
@@ -93,66 +90,32 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <div class="post-recent">
-        <div class="row">
           <div class="col-md-8">
+              <% article.forEach((obj)=>{ %>
             <div class="post-recent">
-              <div class="row">
+              <div class="row">   
                 <div class="col-md-5">
-                  <img src="../images/ananas.jpg" class="img-responsive" alt="">
+                  <img src="../images/<%=obj.img %>" class="img-responsive" alt="">
                 </div>
                 <div class="col-md-7">
                   <p class="date">04/12/17</p>
-                  <a href=""><h2>Creation du blog</h2></a>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
-                    sed, perspiciatis ea exercitationem molestias eius cumque.. </p>
-                  <p>
-                    <img src="../img/heart.png" alt=""> 23
-                  </p>
-                </div>
-              </div>
-              <hr>
-            </div>
-            <div class="post-recent">
-              <div class="row">
-                <div class="col-md-5">
-                  <img src="../img/ananas.jpg" class="img-responsive" alt="">
-                </div>
-                <div class="col-md-7">
-                  <p class="date">04/12/17</p>
-                  <h2>Creation du blog</h2>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
-                    sed, perspiciatis ea exercitationem molestias eius cumque.. </p>
-                  <p>
-                    <img src="../img/heart.png" alt=""> 23
-                  </p>
-                </div>
-              </div>
-              <hr>
-            </div>
-            <div class="post-recent">
-              <div class="row">
-                <div class="col-md-5">
-                  <img src="../img/ananas.jpg" class="img-responsive" alt="">
-                </div>
-                <div class="col-md-7">
-                  <p class="date">04/12/17</p>
-                  <h2>Creation du blog</h2>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
-                    sed, perspiciatis ea exercitationem molestias eius cumque.. </p>
+                  <a href=""><h2><%= obj.title %></h2></a>
+                  <p><%= obj.preview %></p>
                   <p>
                     <img src="../images/heart.png" alt=""> 23
                   </p>
                 </div>
               </div>
               <hr>
+          
             </div>
+            <% } )%>
           </div>
+         
           <div class="col-md-4">
               <h4 class="populaire">Les articles populaires</h4>
             <div class="post-pop">   
-              <img src="../img/ananas.jpg" class="img-responsive" alt="">
+              <img src="../images/ananas.jpg" class="img-responsive" alt="">
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
                 sed, perspiciatis ea exercitationem molestias eius cumque..</p>
                 <p><a href="#">En savoir plus</a></p>
@@ -164,12 +127,7 @@
         <hr>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="post-pop">
-        
-        <h4>Les articles populaires</h4>
-      </div>
-    </div>
+    
 
   </div>
 

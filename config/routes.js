@@ -2,6 +2,7 @@
 var userController = require('../app/controllers/userController');
 const permissions = require('./permissions');
 var articleController = require('../app/controllers/articleController');
+const articleView = require('../app/controllers/articleView')
 var multer = require('multer')
 const upload = multer({
     dest: 'public/images/'
@@ -25,11 +26,8 @@ module.exports = function (app, passport) {
 
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
 
-
-
-    app.get('/',(req, res)=>{
-        res.render('index.ejs')
-    } );//home
+    app.get('/', articleView.list);
+    
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');

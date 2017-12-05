@@ -5,8 +5,6 @@ const Article = require('../models/article');
 var multer = require('multer')
 const fs = require('fs')
 
-
-
 class articleController{
     
     create(req, res){
@@ -31,7 +29,8 @@ class articleController{
            title : req.body.title,
            preview : req.body.preview,
            content : req.body.content,
-           img : fileToUpload.originalname
+           img : fileToUpload.originalname,
+           date : dateFormat
         });
       
         
