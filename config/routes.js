@@ -23,6 +23,7 @@ module.exports = function (app, passport) {
 
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', articleController.edit);
+    app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
 
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
 

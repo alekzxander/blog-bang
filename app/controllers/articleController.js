@@ -61,6 +61,13 @@ class articleController{
             res.redirect('/admin/liste-articles/');
         })
     }
+
+    delete(req, res){
+        let article = req.body;
+        Article.findByIdAndRemove({_id:req.params.id}, article, () => {
+            res.redirect('/admin/liste-articles/');
+        })
+    }
         
 
         
