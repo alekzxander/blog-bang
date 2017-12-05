@@ -100,13 +100,18 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header">
+                                   
                                     <h4 class="title">Créer un article</h4>
                                 </div>
                                 <div class="content">
-                                    <form method="post" action="/post-article">
+                                    <form method="post"  enctype="multipart/form-data"  action="/post-article">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                        <h4>Ajouter une image</h4>
+                                                        <div class="form-group">
+                                                                <input class="form-control input-sm" type="file" name="img" placeholder="Image Upload">
+                                                            </div>
                                                     <label>Intitulé de l'article </label>
                                                     <input type="text" name="title" class="form-control" placeholder="Intitulé..">
                                                 </div>

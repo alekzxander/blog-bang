@@ -6,6 +6,7 @@ var articleSchema = mongoose.Schema({
 	preview: String,
 	content: String,
 	created_date: Date,
+	img : String
 
 });
 module.exports = mongoose.model('article', articleSchema);
