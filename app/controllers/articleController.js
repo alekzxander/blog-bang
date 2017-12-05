@@ -25,7 +25,11 @@ class articleController{
         .catch(err => {
             res.status(400).send("Impossible de sauvegarder dans la db");
         });  
-    }  
+    } 
+    
+    edit(req, res){
+        
+    }
 
 
 }
