@@ -2,6 +2,10 @@ const numeral = require('numeral');
 const bcrypt = require('bcrypt-nodejs');
 const dateFormat = require('dateformat');
 const Article = require('../models/article');
+var multer = require('multer')
+const fs = require('fs')
+
+
 
 class articleController{
     
@@ -15,11 +19,29 @@ class articleController{
         })
     }
 
-    postArticle(req, res){
-        let myData = new Article(req.body);
+    postArticle (req, res){
+        
+        var fileToUpload = req.file;
+        var target_path = 'public/images/' + fileToUpload.originalname;
+        var tmp_path = fileToUpload.path;
+      
+        
+        
+        let myData = new Article({
+           title : req.body.title,
+           preview : req.body.preview,
+           content : req.body.content,
+           img : fileToUpload.originalname
+        });
+      
         
         myData.save()
         .then(item => {
+            var src = fs.createReadStream(tmp_path);
+            var dest = fs.createWriteStream(target_path);
+            src.pipe(dest);
+
+            fs.unlink(tmp_path);
             res.redirect("/admin/creer-article"); 
         })
         .catch(err => {

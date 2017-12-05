@@ -2,7 +2,10 @@
 var userController = require('../app/controllers/userController');
 const permissions = require('./permissions');
 var articleController = require('../app/controllers/articleController');
-
+var multer = require('multer')
+const upload = multer({
+    dest: 'public/images/'
+})
 //you can include all your controllers
 
 module.exports = function (app, passport) {
@@ -11,13 +14,14 @@ module.exports = function (app, passport) {
     app.get('/signup', userController.signup);
 
     /* Admin */
-    app.get('/admin/dashboard', permissions.can('access admin page'), (req, res)=>{
+    app.get('/admin/dashboard', (req, res)=>{
         res.render('admin/dashboard.ejs')
     });
     app.get('/admin/creer-article', articleController.create);
     app.get('/admin/liste-articles', articleController.list);
 
-    app.post('/post-article', articleController.postArticle);
+    app.post('/post-article', upload.single('img'),  articleController.postArticle);
+
 
 
     app.get('/',(req, res)=>{
