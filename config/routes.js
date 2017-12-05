@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
     });
     app.get('/admin/creer-article', articleController.create);
     app.get('/admin/liste-articles', articleController.list);
-    app.get('/admin/editer-article/:id', articleController.edit);
+    app.get('/admin/liste-articles/editer-article/:id', articleController.edit);
 
     app.post('/post-article', articleController.postArticle);
 

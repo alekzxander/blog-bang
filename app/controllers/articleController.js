@@ -28,7 +28,16 @@ class articleController{
     } 
     
     edit(req, res){
-        
+       Article.find({}, function(err, article){
+           res.render('admin/editer-article.ejs', {
+               id: req.params.id,
+               myArticle: article.filter((article) => {
+                   return (article.id == req.params.id)
+               })[0]
+           })
+       })
+
+
     }
 
 

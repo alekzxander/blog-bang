@@ -99,74 +99,7 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-
-
-
-                        <div class="alert" role="alert">
-
-                        <p>  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Cliquez sur un article afin de le modifier ou le supprimer.</p>
-                        </div>
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <h4>Articles publiés</h4>
-                                        <div class="form-group">
-
-                                            <% for(var i=0; i<article.length; i++) {%>
-                                                <a class="editArticleLink" href="/admin/liste-articles/editer-article/:id"><div class="card card-listearticle">
-                                                    <div class="content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <h2 style="font-weight: bold">
-                                                                        <%= article[i].title %>
-                                                                    </h2>
-                                                                    <p>
-                                                                        <%= article[i].preview %>
-                                                                    </p>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div></a>
-
-                                                <% } %>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <h4>Brouillons</h4>
-
-                                        <div class="form-group">
-
-                                            <% for(var i=0; i<article.length; i++) {%>
-                                                <a class="editArticleLink" href="#"> <div class="card card-listearticle">
-                                                    <div class="content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <h5 style="font-weight: bold">
-                                                                        <%= article[i].title %>
-                                                                    </h5>
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div></a>
-
-                                                <% } %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h1>Tests</h1>
                     </div>
                 </div>
             </div>
