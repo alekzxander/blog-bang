@@ -120,12 +120,20 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <h2 style="font-weight: bold">
-                                                                        <%= article[i].title %>
-                                                                    </h2>
-                                                                    <p>
-                                                                        <%= article[i].preview %>
-                                                                    </p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-3">
+                                                                                <img src="/images/<%= article[i].img %>" class="img-responsive" alt="">
+                                                                        </div>
+                                                                        <div class="col-md-9">
+                                                                                <h2 style="font-weight: bold">
+                                                                                        <%= article[i].title %>
+                                                                                    </h2>
+                                                                                    <p>
+                                                                                        <%= article[i].preview %>
+                                                                                    </p>
+                
+                                                                        </div>
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
