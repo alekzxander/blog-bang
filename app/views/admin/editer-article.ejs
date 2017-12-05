@@ -99,7 +99,44 @@
 
             <div class="content">
                 <div class="container-fluid">
-                        <h1>Tests</h1>
+                    <h1> <%= article.title  %> </h1>
+
+                    <form method="post" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Title </label>
+                                    <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Preview </label>
+                                    <input type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content </label>
+                                    <input type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                        </div>
+                    <button class="btn btn-info" type="submit">Sauvegarder</button>
+                    </form>
+                </div>
+               
+                
+                    
+                </div>
+                </form>
+                      
+         
                     </div>
                 </div>
             </div>

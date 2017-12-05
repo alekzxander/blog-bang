@@ -48,19 +48,25 @@ class articleController{
             res.status(400).send("Impossible de sauvegarder dans la db");
         });  
     } 
-    
-    edit(req, res){
-       Article.find({}, function(err, article){
-           res.render('admin/editer-article.ejs', {
-               id: req.params.id,
-               myArticle: article.filter((article) => {
-                   return (article.id == req.params.id)
-               })[0]
-           })
-       })
 
-
+    showEdit(req,res){
+        Article.findOne({_id: req.params.id}, function(err, article) { 
+            res.render('admin/editer-article.ejs', {article});
+        }) 
     }
+
+
+    edit(req, res){
+        let article = req.body;
+        Article.findByIdAndUpdate({_id:req.params.id}, article, () =>{
+            res.redirect('/admin/liste-articles/');
+        })
+    }
+        
+
+        
+
+
 
 
 }
