@@ -21,6 +21,7 @@
     "express-session": "latest",
     "fs-extra": "latest",
     "http-proxy": "latest",
+    "izitoast": "^1.2.0",
     "md5": "latest",
     "mime": "latest",
     "mongoose": "latest",
