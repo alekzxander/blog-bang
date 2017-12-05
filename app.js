@@ -18,11 +18,15 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var dateFormat = require('dateformat');
+var nodemailer = require('nodemailer');
 var now = new Date();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+app.use('/dist', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/css', express.static(__dirname+'/public/css'));
+app.use('/izitoast', express.static(__dirname + '/node_modules/izitoast'));
 
 /***************Mongodb configuratrion********************/
 var mongoose = require('mongoose');
