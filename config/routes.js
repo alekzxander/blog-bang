@@ -23,7 +23,9 @@ module.exports = function (app, passport) {
     
     app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
     
-    app.get('/admin/liste-articles', articleController.list);
+    app.get('/admin/liste-articles', articleController.list)
+
+    app.post('/admin/liste-articles/publier-brouillon/:id', articleController.draftToArticle);
 
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', articleController.edit);

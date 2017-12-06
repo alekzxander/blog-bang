@@ -101,14 +101,22 @@
                 <div class="container-fluid">
                     <h1> <%= article.title  %> </h1>
 
-                    <form method="post" enctype="multipart/form-data"  action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+                    <form method="post" enctype="multipart/form-data" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                                    <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
+                                    <input type="text" name="img" value="<%= article.img %>" readonly>
+                                    
+                                    
+                            </div>
+                            
+                        </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                    <div class="form-group">
-                                            <input class="form-control input-sm" type="file" name="img" placeholder="Image Upload">
-                                            <input type="text" name="img" value="<%= article.img %>" readonly>
-                                        </div>
+                                    
                                 <div class="form-group">
                                     <label>Title </label>
                                     <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
@@ -135,8 +143,13 @@
                                 </div>
                             </div>
                         </div>
-                    <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button> 
-                    <button class="btn btn-primary btn-fill pull-left" type="submit" formaction="/post-draft"> Sauvegarder en tant que brouillon</button>
+                    <!-- <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button>  -->
+                    <button class="btn btn-primary btn-fill pull-left" type="submit"> Mettre à jour  </button> 
+              
+                    <%if (article.brouillon == true) { %>
+                      <button class="btn btn-success btn-fill pull-left" type="submit" formaction="/admin/liste-articles/publier-brouillon/<%- article._id %>"> Publier </button> 
+                    <% } %>
+                
                     <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
 
                     
