@@ -36,7 +36,7 @@ class articleController{
            content : req.body.content,
            img : img_path,
            date : dateFormat,
-           brouillon: true
+           brouillon: false
         });
       
         
@@ -56,6 +56,7 @@ class articleController{
         });  
     } 
 
+    // permet de sauvegarder en tant que brouillon - Crée article uniquement ! 
     saveAsDraft(req, res){
         let fileToUpload = req.file;
 
@@ -97,36 +98,38 @@ class articleController{
             
 
 
+        list(req, res){
+            Article.find({}, function(err, article){
+                res.render('admin/liste-articles.ejs', {article: article});
+            })
+        }
+    
+    
+        showEdit(req,res){
+            Article.findOne({_id: req.params.id}, function(err, article) { 
+                res.render('admin/editer-article.ejs', {article});
+            }) 
+        }
+
 
   
 
 
 
-    list(req, res){
-        Article.find({}, function(err, article){
-            res.render('admin/liste-articles.ejs', {article: article});
-        })
-    }
 
-
-    showEdit(req,res){
-        Article.findOne({_id: req.params.id}, function(err, article) { 
-            res.render('admin/editer-article.ejs', {article});
-        }) 
-    }
-
-    edit(req, res){
+    /**edit(req, res){
         let fileToUpload = req.file;
-
-        if (fileToUpload != undefined || fileToUpload != null) {
-            target_path = 'public/images/' + fileToUpload.originalname;
-            tmp_path = fileToUpload.path;
-            img_path = fileToUpload.originalname;
-            console.log('pas defini')
-        } else {
-            img_path = req.body.img;
-            console.log('defini en tant qu image')
-        }
+        
+                if (fileToUpload != undefined || fileToUpload != null) {
+                    target_path = 'public/images/' + fileToUpload.originalname;
+                    tmp_path = fileToUpload.path;
+                    img_path = fileToUpload.originalname;
+                    console.log('pas defini')
+                } else {
+                    img_path = req.body.img;
+                    console.log('defini en tant qu image')
+                }
+                
         let myData = new Article({
             title: req.body.title,
             preview : req.body.preview,
@@ -135,6 +138,7 @@ class articleController{
             date : dateFormat,
             brouillon: true 
         })
+
         Article.findByIdAndUpdate({_id:req.params.id}, myData, () =>{
             if (fileToUpload != undefined || fileToUpload != null) {
                 let src = fs.createReadStream(tmp_path);
@@ -142,10 +146,36 @@ class articleController{
                 src.pipe(dest);
 
                 fs.unlink(tmp_path);
+                console.log("ça marche pas mec");
+            }else {
+            res.redirect('/admin/liste-articles/'); 
+            console.log("GG");
             }
+        })
+    }
+*/
+
+    edit(req ,res){
+        let article = req.body;
+        Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
             res.redirect('/admin/liste-articles/');
         })
     }
+
+    draftToArticle(req, res){
+        let article = {
+            title: req.body.title,
+            preview : req.body.preview,
+            content : req.body.content,
+            img : img_path,
+            date : dateFormat,
+            brouillon: false 
+        };
+        Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+            res.redirect('/admin/liste-articles/');
+        })
+    }
+
 
     delete(req, res){
         let article = req.body;
