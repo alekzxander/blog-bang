@@ -8,12 +8,12 @@ const fs = require('fs')
 class articleController{
     
     create(req, res){
-        res.render('admin/createArticle.ejs');
+        res.render('admin/createArticle.ejs', { layout : 'admin/createArticle.ejs'});
     }
 
     list(req, res){
         Article.find({}, function(err, article){
-            res.render('admin/liste-articles.ejs', {article: article});
+            res.render('admin/liste-articles.ejs', {article: article, layout :'admin/liste-articles' });
         })
     }
 
