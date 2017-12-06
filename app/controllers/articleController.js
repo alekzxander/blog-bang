@@ -11,7 +11,11 @@ let img_path;
 class articleController{
     
     create(req, res){
-        res.render('admin/createArticle.ejs');
+        res.render('admin/createArticle.ejs',{layout :'admin/createArticle.ejs'});
+    }
+
+    list(req, res){
+        
     }
 
     postArticle (req, res){
@@ -79,7 +83,6 @@ class articleController{
                 let src = fs.createReadStream(tmp_path);
                 let dest = fs.createWriteStream(target_path);
                 src.pipe(dest);
-
                 fs.unlink(tmp_path);
             }
             res.redirect("/admin/creer-article"); 
