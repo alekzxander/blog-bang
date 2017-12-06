@@ -18,6 +18,9 @@ var dateFormat = require('dateformat');
 var nodemailer = require('nodemailer');
 var now = new Date();
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs')
+app.set('view options', { layout:'layout.ejs' });
 app.use(expressLayouts);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

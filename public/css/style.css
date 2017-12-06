@@ -153,3 +153,7 @@ footer
 	padding: 3px 8px 3px 8px;
 	
 }
+.article img
+{
+	height: 384px;
+}

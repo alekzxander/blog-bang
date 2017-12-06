@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -91,37 +91,29 @@
 <div class="container">
   <div class="row">
           <div class="col-md-8">
-
-              <%- defineContent('blog') %>
-          
-          </div>
-         
+              <%- defineContent('blog') %>         
+              <%- defineContent('article') %>
+           
+          </div>         
           <div class="col-md-4">
               <h4 class="populaire">Les articles populaires</h4>
-            <div class="post-pop">   
-              <img src="../images/ananas.jpg" class="img-responsive" alt="">
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
-                sed, perspiciatis ea exercitationem molestias eius cumque..</p>
-                <p><a href="#">En savoir plus</a></p>
+              <div class="post-pop">   
+                <img src="../images/ananas.jpg" class="img-responsive" alt="">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
+                  sed, perspiciatis ea exercitationem molestias eius cumque..</p>
+                  <p><a href="#">En savoir plus</a></p>
             </div>
-    
 
           </div>
         </div>
-        <hr>
+      
       </div>
     </div>
-    
 
   </div>
-
       </div>
       <footer>
-
       </footer>
-
-
-
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

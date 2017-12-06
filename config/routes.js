@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
     /* View article */
     app.get('/', articleView.list);
-
+    // app.use('/articles/:id', articleView.midll)
     app.get('/articles/:id', articleView.articles)
 
 
