@@ -4,6 +4,10 @@ const dateFormat = require('dateformat');
 const Article = require('../models/article');
 var multer = require('multer')
 const fs = require('fs')
+let target_path;
+let tmp_path;
+let img_path;
+
 
 class articleController{
     
@@ -12,10 +16,17 @@ class articleController{
     }
 
     postArticle (req, res){
-        
-        var fileToUpload = req.file;
-        var target_path = 'public/images/' + fileToUpload.originalname;
-        var tmp_path = fileToUpload.path;
+        let fileToUpload = req.file;
+
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
       
         
         
@@ -23,7 +34,7 @@ class articleController{
            title : req.body.title,
            preview : req.body.preview,
            content : req.body.content,
-           img : fileToUpload.originalname,
+           img : img_path,
            date : dateFormat,
            brouillon: true
         });
@@ -31,11 +42,13 @@ class articleController{
         
         myData.save()
         .then(item => {
-            var src = fs.createReadStream(tmp_path);
-            var dest = fs.createWriteStream(target_path);
-            src.pipe(dest);
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
 
-            fs.unlink(tmp_path);
+                fs.unlink(tmp_path);
+            }
             res.redirect("/admin/creer-article"); 
         })
         .catch(err => {
@@ -44,28 +57,37 @@ class articleController{
     } 
 
     saveAsDraft(req, res){
+        let fileToUpload = req.file;
 
-        var fileToUpload = req.file;
-        var target_path = 'public/images/' + fileToUpload.originalname;
-        var tmp_path = fileToUpload.path;
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
 
 
        let myData = new Article({
             title: req.body.title,
             preview : req.body.preview,
             content : req.body.content,
-            img : fileToUpload.originalname,
+            img : img_path,
             date : dateFormat,
             brouillon: true 
         })
 
         myData.save()
         .then(item => {
-            var src = fs.createReadStream(tmp_path);
-            var dest = fs.createWriteStream(target_path);
-            src.pipe(dest);
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
 
-            fs.unlink(tmp_path);
+                fs.unlink(tmp_path);
+            }
             res.redirect("/admin/creer-article"); 
         })
             .catch(err => {
@@ -94,8 +116,33 @@ class articleController{
     }
 
     edit(req, res){
-        let article = req.body;
-        Article.findByIdAndUpdate({_id:req.params.id}, article, () =>{
+        let fileToUpload = req.file;
+
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
+        let myData = new Article({
+            title: req.body.title,
+            preview : req.body.preview,
+            content : req.body.content,
+            img : img_path,
+            date : dateFormat,
+            brouillon: true 
+        })
+        Article.findByIdAndUpdate({_id:req.params.id}, myData, () =>{
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
+
+                fs.unlink(tmp_path);
+            }
             res.redirect('/admin/liste-articles/');
         })
     }

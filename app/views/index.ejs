@@ -27,7 +27,7 @@
         <ul class="container nav navbar-nav navbar-right ">
 
 
-          <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="/">Acceuil <span class="sr-only">(current)</span></a></li>
           <li><a href="#">Link</a></li>
         </div>
       </ul>
@@ -95,11 +95,11 @@
             <div class="post-recent">
               <div class="row">   
                 <div class="col-md-5">
-                  <img src="../images/<%=obj.img %>" class="img-responsive" alt="">
+                 <a href="<%= obj._id %>"><img src="../images/<%=obj.img %>" class="img-responsive" alt=""></a>
                 </div>
                 <div class="col-md-7">
                   <p class="date">04/12/17</p>
-                  <a href=""><h2><%= obj.title %></h2></a>
+                  <a href="/articles/<%= obj._id %>"><h2><%= obj.title %></h2></a>
                   <p><%= obj.preview %></p>
                   <p>
                     <img src="../images/heart.png" alt=""> 23
@@ -124,7 +124,7 @@
 
           </div>
         </div>
-        <hr>
+    
       </div>
     </div>
     

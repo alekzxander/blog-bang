@@ -31,7 +31,11 @@ module.exports = function (app, passport) {
 
 
     app.get('/', articleView.list);
-    
+
+    app.get('/articles/:id', articleView.articles)
+
+
+    /* passport login */
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
