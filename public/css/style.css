@@ -78,6 +78,12 @@ hr
 {
 	min-height: 221px;
 	max-height: 221px;
+	transition: 1s;
+
+}
+.post-recent .img-responsive:hover
+{
+	filter: blur(0.5px);
 }
 
 .post-recent hr 
@@ -132,6 +138,18 @@ hr
 }
 footer 
 {
-	height: 200px;
+	height: 150px;
 	background: #262626;
+	margin-top: 200px;
+}
+.article p 
+{
+	margin-top: 60px;
+	line-height: 24px;
+}
+.btn-success
+{
+	background:#75aa75;
+	padding: 3px 8px 3px 8px;
+	
 }

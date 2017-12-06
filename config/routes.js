@@ -22,9 +22,13 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles', articleController.list);
 
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
-
+    /* View article */
     app.get('/', articleView.list);
-    
+
+    app.get('/articles/:id', articleView.articles)
+
+
+    /* passport login */
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
