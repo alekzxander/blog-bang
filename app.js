@@ -4,6 +4,7 @@ var app = express();
 var multer = require('multer')
 var constants = require('constants');
 var constant = require('./config/constants');
+var expressLayouts = require('express-ejs-layouts');
 
 
 var port = process.env.PORT || 8042;
