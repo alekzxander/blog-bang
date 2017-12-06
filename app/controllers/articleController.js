@@ -4,6 +4,10 @@ const dateFormat = require('dateformat');
 const Article = require('../models/article');
 var multer = require('multer')
 const fs = require('fs')
+let target_path;
+let tmp_path;
+let img_path;
+
 
 class articleController{
     
@@ -11,17 +15,18 @@ class articleController{
         res.render('admin/createArticle.ejs');
     }
 
-    list(req, res){
-        Article.find({}, function(err, article){
-            res.render('admin/liste-articles.ejs', {article: article});
-        })
-    }
-
     postArticle (req, res){
-        
-        var fileToUpload = req.file;
-        var target_path = 'public/images/' + fileToUpload.originalname;
-        var tmp_path = fileToUpload.path;
+        let fileToUpload = req.file;
+
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
       
         
         
@@ -29,27 +34,127 @@ class articleController{
            title : req.body.title,
            preview : req.body.preview,
            content : req.body.content,
-           img : fileToUpload.originalname,
-           date : dateFormat
+           img : img_path,
+           date : dateFormat,
+           brouillon: true
         });
       
         
         myData.save()
         .then(item => {
-            var src = fs.createReadStream(tmp_path);
-            var dest = fs.createWriteStream(target_path);
-            src.pipe(dest);
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
 
-            fs.unlink(tmp_path);
+                fs.unlink(tmp_path);
+            }
             res.redirect("/admin/creer-article"); 
         })
         .catch(err => {
             res.status(400).send("Impossible de sauvegarder dans la db");
         });  
-    }  
+    } 
+
+    saveAsDraft(req, res){
+        let fileToUpload = req.file;
+
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
+
+
+       let myData = new Article({
+            title: req.body.title,
+            preview : req.body.preview,
+            content : req.body.content,
+            img : img_path,
+            date : dateFormat,
+            brouillon: true 
+        })
+
+        myData.save()
+        .then(item => {
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
+
+                fs.unlink(tmp_path);
+            }
+            res.redirect("/admin/creer-article"); 
+        })
+            .catch(err => {
+                res.status(400).send("Impossible de sauvegarder dans la db");
+            });  
+        }
+            
+
+
+
+  
+
+
+
+    list(req, res){
+        Article.find({}, function(err, article){
+            res.render('admin/liste-articles.ejs', {article: article});
+        })
+    }
+
+
+    showEdit(req,res){
+        Article.findOne({_id: req.params.id}, function(err, article) { 
+            res.render('admin/editer-article.ejs', {article});
+        }) 
+    }
+
+    edit(req, res){
+        let fileToUpload = req.file;
+
+        if (fileToUpload != undefined || fileToUpload != null) {
+            target_path = 'public/images/' + fileToUpload.originalname;
+            tmp_path = fileToUpload.path;
+            img_path = fileToUpload.originalname;
+            console.log('pas defini')
+        } else {
+            img_path = req.body.img;
+            console.log('defini en tant qu image')
+        }
+        let myData = new Article({
+            title: req.body.title,
+            preview : req.body.preview,
+            content : req.body.content,
+            img : img_path,
+            date : dateFormat,
+            brouillon: true 
+        })
+        Article.findByIdAndUpdate({_id:req.params.id}, myData, () =>{
+            if (fileToUpload != undefined || fileToUpload != null) {
+                let src = fs.createReadStream(tmp_path);
+                let dest = fs.createWriteStream(target_path);
+                src.pipe(dest);
+
+                fs.unlink(tmp_path);
+            }
+            res.redirect('/admin/liste-articles/');
+        })
+    }
+
+    delete(req, res){
+        let article = req.body;
+        Article.findByIdAndRemove({_id:req.params.id}, article, () => {
+            res.redirect('/admin/liste-articles/');
+        })
+    }
 
 
 }
-
 
 module.exports = new articleController();

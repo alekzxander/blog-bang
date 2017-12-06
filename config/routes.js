@@ -19,10 +19,17 @@ module.exports = function (app, passport) {
         res.render('admin/dashboard.ejs')
     });
     app.get('/admin/creer-article', articleController.create);
+    app.post('/post-article', upload.single('img'),  articleController.postArticle);
+    
+    app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
+    
     app.get('/admin/liste-articles', articleController.list);
 
-    app.post('/post-article', upload.single('img'),  articleController.postArticle);
-    /* View article */
+    app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
+    app.post('/admin/liste-articles/editer-article/:id', articleController.edit);
+    app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
+
+
     app.get('/', articleView.list);
 
     app.get('/articles/:id', articleView.articles)

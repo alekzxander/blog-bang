@@ -163,11 +163,11 @@ body {
 }
 
 a {
-    color: #1DC7EA;
+    color:#5e5e5e;
 }
 
 a:hover, a:focus {
-    color: #42d0ed;
+    color: #3a3a3a;
     text-decoration: none;
 }
 
@@ -3878,3 +3878,8 @@ fieldset[disabled] .btn-neutral.active {
   .card-listearticle:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
+
+  .alert {
+      color: #3a3a3a;
+  }
+

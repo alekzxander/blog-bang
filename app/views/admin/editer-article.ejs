@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Blog Bang - Crée un article</title>
+    <meta name="viewport" content="width=device-width , initial-scale=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="#" class="simple-text">
+                        <span style="font-weight: bold">Blog</span>Bang
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li>
+                        <a href="/admin/dashboard">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <p>Tableau de bord</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/creer-article">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            <p>Créer un article </p>
+                        </a>
+                    </li>
+
+                    <li class="active">
+                        <a href="/admin/liste-articles">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Liste des articles</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            <p>azerty</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/liste-votes">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <p>Liste des votes</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Liste des articles</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/logout">
+                                    <p>Déconnexion</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <h1> <%= article.title  %> </h1>
+
+                    <form method="post" enctype="multipart/form-data"  action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                            <input class="form-control input-sm" type="file" name="img" placeholder="Image Upload">
+                                            <input type="text" name="img" value="<%= article.img %>" readonly>
+                                        </div>
+                                <div class="form-group">
+                                    <label>Title </label>
+                                    <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Preview </label>
+                                    <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
+                                            <%= article.preview %>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Content </label>
+                                    <textarea type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
+                                            <%= article.content %>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button> 
+                    <button class="btn btn-primary btn-fill pull-left" type="submit" formaction="/post-draft"> Sauvegarder en tant que brouillon</button>
+                    <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
+
+                    
+                </form>
+                </div>
+               
+                
+                    
+                </div>
+                </form>
+                      
+         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    </html>
+    
+
+    
+
+
+
+
