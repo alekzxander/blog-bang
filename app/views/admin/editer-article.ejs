@@ -115,7 +115,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Preview </label>
-                                    <input type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
+                                    <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
+                                            <%= article.preview %>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -123,12 +125,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Content </label>
-                                    <input type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
+                                    <textarea type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
+                                            <%= article.content %>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
-                    <button class="btn btn-info" type="submit">Sauvegarder</button> 
+                    <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button> 
+                    <button class="btn btn-primary btn-fill pull-left" type="submit" formaction="/post-draft"> Sauvegarder en tant que brouillon</button>
                     <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
+
                     
                 </form>
                 </div>

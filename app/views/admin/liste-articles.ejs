@@ -115,6 +115,7 @@
                                         <div class="form-group">
 
                                             <% for(var i=0; i<article.length; i++) {%>
+                                                    <%if (article[i].brouillon == false) { %>
                                                 <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>"><div class="card card-listearticle">
                                                     <div class="content">
                                                         <div class="row">
@@ -125,12 +126,17 @@
                                                                                 <img src="/images/<%= article[i].img %>" class="img-responsive" alt="">
                                                                         </div>
                                                                         <div class="col-md-9">
-                                                                                <h2 style="font-weight: bold">
+                                                                                
+                                                                                   <h2 style="font-weight: bold">
                                                                                         <%= article[i].title %>
                                                                                     </h2>
                                                                                     <p>
                                                                                         <%= article[i].preview %>
                                                                                     </p>
+
+                                                                               
+                                                                    
+                                                                              
                 
                                                                         </div>
                                                                     </div>
@@ -140,7 +146,7 @@
                                                         </div>
                                                     </div>
                                                 </div></a>
-
+                                                <% } %>
                                                 <% } %>
 
                                         </div>
@@ -152,14 +158,19 @@
                                         <div class="form-group">
 
                                             <% for(var i=0; i<article.length; i++) {%>
-                                                <a class="editArticleLink" href="#"> <div class="card card-listearticle">
+                                                    <%if (article[i].brouillon == true) { %>
+                                                <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>"> <div class="card card-listearticle">
                                                     <div class="content">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
+                                                             
+                                                                    
                                                                     <h5 style="font-weight: bold">
                                                                         <%= article[i].title %>
                                                                     </h5>
+                                                                
+                                                                    
 
 
                                                                 </div>
@@ -167,7 +178,7 @@
                                                         </div>
                                                     </div>
                                                 </div></a>
-
+                                                <% } %>
                                                 <% } %>
                                             </div>
                                         </div>

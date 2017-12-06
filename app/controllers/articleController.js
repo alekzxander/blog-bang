@@ -11,12 +11,6 @@ class articleController{
         res.render('admin/createArticle.ejs');
     }
 
-    list(req, res){
-        Article.find({}, function(err, article){
-            res.render('admin/liste-articles.ejs', {article: article});
-        })
-    }
-
     postArticle (req, res){
         
         var fileToUpload = req.file;
@@ -30,7 +24,8 @@ class articleController{
            preview : req.body.preview,
            content : req.body.content,
            img : fileToUpload.originalname,
-           date : dateFormat
+           date : dateFormat,
+           brouillon: true
         });
       
         
@@ -48,12 +43,55 @@ class articleController{
         });  
     } 
 
+    saveAsDraft(req, res){
+
+        var fileToUpload = req.file;
+        var target_path = 'public/images/' + fileToUpload.originalname;
+        var tmp_path = fileToUpload.path;
+
+
+       let myData = new Article({
+            title: req.body.title,
+            preview : req.body.preview,
+            content : req.body.content,
+            img : fileToUpload.originalname,
+            date : dateFormat,
+            brouillon: true 
+        })
+
+        myData.save()
+        .then(item => {
+            var src = fs.createReadStream(tmp_path);
+            var dest = fs.createWriteStream(target_path);
+            src.pipe(dest);
+
+            fs.unlink(tmp_path);
+            res.redirect("/admin/creer-article"); 
+        })
+            .catch(err => {
+                res.status(400).send("Impossible de sauvegarder dans la db");
+            });  
+        }
+            
+
+
+
+  
+
+
+
+    list(req, res){
+        Article.find({}, function(err, article){
+            res.render('admin/liste-articles.ejs', {article: article});
+        })
+    }
+
+
     showEdit(req,res){
         Article.findOne({_id: req.params.id}, function(err, article) { 
             res.render('admin/editer-article.ejs', {article});
         }) 
     }
-
 
     edit(req, res){
         let article = req.body;
@@ -68,14 +106,8 @@ class articleController{
             res.redirect('/admin/liste-articles/');
         })
     }
-        
-
-        
-
-
 
 
 }
-
 
 module.exports = new articleController();
