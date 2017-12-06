@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 
     /* Admin */
     app.get('/admin/dashboard', (req, res)=>{
-        res.render('admin/dashboard.ejs')
+        res.render('admin/dashboard.ejs', {layout : 'admin/dashboard.ejs'})
     });
     app.get('/admin/creer-article', articleController.create);
     app.get('/admin/liste-articles', articleController.list);

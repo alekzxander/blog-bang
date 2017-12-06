@@ -6,9 +6,9 @@ class articleView{
         Article.find({}, ((err, articles)=>{
             res.render('blog', 
                 {
-                    
+                    article : articles,
                      layout : 'layout',
-                     article : articles 
+                 
                  })          
         }))     
     }
