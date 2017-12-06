@@ -101,7 +101,18 @@
                 <div class="container-fluid">
                     <h1> <%= article.title  %> </h1>
 
-                    <form method="post" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+                    <form method="post" enctype="multipart/form-data" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                                    <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
+                                    <input type="text" name="img" value="<%= article.img %>" readonly>
+                                    
+                                    
+                            </div>
+                            
+                        </div>
 
                         <div class="row">
                             <div class="col-md-6">
