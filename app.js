@@ -1,18 +1,14 @@
 var express = require('express');
-
 var app = express();
 var multer = require('multer')
 var constants = require('constants');
 var constant = require('./config/constants');
 var expressLayouts = require('express-ejs-layouts');
-
-
 var port = process.env.PORT || 8042;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 var path = require('path');
-
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -22,6 +18,7 @@ var dateFormat = require('dateformat');
 var nodemailer = require('nodemailer');
 var now = new Date();
 
+app.use(expressLayouts);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
