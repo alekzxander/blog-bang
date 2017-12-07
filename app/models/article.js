@@ -6,9 +6,9 @@ var articleSchema = mongoose.Schema({
 	brouillon: {type:Boolean, default:false},
 	preview: String,
 	content: String,
-	created_date: Date,
+	date: {type: Date, required: true, default: Date.now},
 	img : String,
-	like : {type : Number, default: 11}
+	like : {type : Number, default: 0}
 
 });
 module.exports = mongoose.model('article', articleSchema);

@@ -97,7 +97,7 @@ class articleController{
 
         list(req, res){
             Article.find({}, function(err, article){
-                res.render('admin/liste-articles.ejs', {article: article});
+                res.render('admin/liste-articles.ejs', {article: article, layout : 'admin/editer-article.ejs'});
             })
         }
     
