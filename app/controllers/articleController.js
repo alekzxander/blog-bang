@@ -103,7 +103,7 @@ class articleController{
     
         showEdit(req,res){
             Article.findOne({_id: req.params.id}, function(err, article) { 
-                res.render('admin/editer-article.ejs', {article});
+                res.render('admin/editer-article.ejs', {article, layout :'admin/editer-article.ejs' });
             }) 
         }
 
@@ -117,15 +117,12 @@ class articleController{
 
     edit(req ,res){
         let fileToUpload = req.file;
-   
-
         if (fileToUpload != undefined || fileToUpload != null) {
             target_path = 'public/images/' + fileToUpload.originalname;
             tmp_path = fileToUpload.path;
             img_path = fileToUpload.originalname;
         } else {
              img_path = req.body.img;
-              console.log('defini en tant qu image : ' + img_path)
         }
 
         let article = {
@@ -136,19 +133,21 @@ class articleController{
             date : dateFormat,
             brouillon: req.body.brouillon
         };
-            
-
         Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
-            if (fileToUpload != undefined || fileToUpload != null) {
-                target_path = 'public/images/' + fileToUpload.originalname;
-                tmp_path = fileToUpload.path;
-                img_path = fileToUpload.originalname;
-            } else {
-                img_path = req.body.img;
-            }
-        })
-    }
-
+           
+                if (fileToUpload != undefined || fileToUpload != null) {
+                    let src = fs.createReadStream(tmp_path);
+                    let dest = fs.createWriteStream(target_path);
+                    src.pipe(dest);
+                    fs.unlink(tmp_path);
+                }
+                res.redirect("/admin/creer-article"); 
+            })
+                .catch(err => {
+                    res.status(400).send("Impossible de sauvegarder dans la db");
+                });  
+    
+        }
     draftToArticle(req, res){
         let article = {     
             title: req.body.title,
