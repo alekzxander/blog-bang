@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
         })
     })
 
-    app.post('/admin/liste-articles/publier-brouillon/:id', articleController.draftToArticle);
+    app.post('/admin/liste-articles/publier-brouillon/:id',upload.single('img'), articleController.draftToArticle);
 
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);

@@ -1,29 +1,32 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Blog Bang - Crée un article</title>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Blog Bang - Crée un article</title>
     <meta name="viewport" content="width=device-width , initial-scale=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap core CSS     -->
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
 
     <!--     Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-   
+
 </head>
+
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
-        	<div class="sidebar-wrapper">
+            <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
                         <span style="font-weight: bold">Blog</span>Bang
@@ -31,34 +34,50 @@
                 </div>
 
                 <ul class="nav">
+                    <p style="font-size: 15px">Accueil </p>
                     <li>
                         <a href="/admin/dashboard">
-                             <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            <i class="fa fa-tachometer" aria-hidden="true"></i>
                             <p>Tableau de bord</p>
                         </a>
                     </li>
-
+                    <hr style="width: 150px; border-color: #cccccc">
+                    <p style="font-size: 15px"> Blog </p>
                     <li class="active">
-                            <a href="/admin/creer-article">
+                        <a href="/admin/creer-article">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             <p>Créer un article </p>
                         </a>
                     </li>
 
                     <li>
-                            <a href="/admin/liste-articles">
+                        <a href="/admin/liste-articles">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <p>Liste des articles</p>
                         </a>
                     </li>
+                    <hr style="width: 150px; border-color: #cccccc">
+                    <p style="font-size: 15px"> Administrateur </p>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Mon compte</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-users" aria-hidden="true"></i>
 
-                   
+                            <p>Déconnexion</p>
+                        </a>
+                    </li>
+
                 </ul>
-        	</div>
+            </div>
         </div>
 
         <div class="main-panel">
-    		<nav class="navbar navbar-default navbar-fixed">
+            <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -72,11 +91,11 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                               <a href="/logout">
+                                <a href="/logout">
                                     <p>Déconnexion</p>
                                 </a>
                             </li>
-    						<li class="separator hidden-lg hidden-md"></li>
+                            <li class="separator hidden-lg hidden-md"></li>
                         </ul>
                     </div>
                 </div>
@@ -87,32 +106,34 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="header">
-                                   
-                                    <h4 class="title">Créer un article</h4>
-                                </div>
+
                                 <div class="content">
-                                    <form method="post"  enctype="multipart/form-data"  action="/post-article">
+                                    <form method="post" enctype="multipart/form-data" action="/post-article">
+                                    
+
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                        <h4>Ajouter une image</h4>
-                                                        <div class="form-group">
-                                                                <input class="form-control input-sm" type="file" name="img" placeholder="Image Upload">
-                                                            </div>
-                                                    <label>Intitulé de l'article </label>
-                                                    <input type="text" name="title" class="form-control" placeholder="Intitulé..">
+                                            <div class="col-md-5">
+                                                <h4>Titre</h4>
+                                                <input type="text" name="title" class="form-control" placeholder="Intitulé..">
                                                 </div>
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                            <h4>Image</h4>
+                                                            <input class="btn btn-primary" type="file" name="img" placeholder="Image Upload">
+                                                    </div>
+                                                </div>
                                         </div>
 
-                                        
+
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                        
-                                                    <label>Preview  </label>
+
+                                                    <h4>Résumé</h4>
                                                     <input name="preview" class="form-control" placeholder="Déroulez la liste ou créez un nouveau type" type="text">
                                                 </div>
                                             </div>
@@ -120,8 +141,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="comment">Texte:</label>
-                                                    <textarea name="content" class="form-control" rows="7"></textarea>
+                                                    <h4>Contenu</h4>
+                                                    <textarea class="form-control" rows="7"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,14 +161,12 @@
         </div>
     </div>
 
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.js"
-    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
     <script>
-        
-    
+
+
     </script>
 </body>
+
 </html>

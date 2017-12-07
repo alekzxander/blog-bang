@@ -13,8 +13,8 @@
 
     <!-- Bootstrap core CSS     -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
 
     <!--     Fonts and icons     -->
@@ -34,13 +34,15 @@
                 </div>
 
                 <ul class="nav">
+                    <p style="font-size: 15px">Accueil </p>
                     <li>
                         <a href="/admin/dashboard">
                             <i class="fa fa-tachometer" aria-hidden="true"></i>
                             <p>Tableau de bord</p>
                         </a>
                     </li>
-
+                    <hr style="width: 150px; border-color: #cccccc">
+                    <p style="font-size: 15px"> Blog </p>
                     <li>
                         <a href="/admin/creer-article">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -54,8 +56,22 @@
                             <p>Liste des articles</p>
                         </a>
                     </li>
+                    <hr style="width: 150px; border-color: #cccccc">
+                    <p style="font-size: 15px"> Administrateur </p>
+                    <li>
+                        <a href="/admin/liste-articles">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Mon compte</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/liste-articles">
+                            <i class="fa fa-users" aria-hidden="true"></i>
 
-                    
+                            <p>Déconnexion</p>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -85,6 +101,7 @@
                 </div>
             </nav>
 
+
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -92,10 +109,11 @@
 
 
 
-                        <div class="alert" role="alert">
+                            <div class="alert" role="alert">
 
-                        <p>  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Cliquez sur un article afin de le modifier ou le supprimer.</p>
-                        </div>
+                                <p>
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Cliquez sur un article afin de le modifier ou le supprimer.</p>
+                            </div>
                             <div class="content">
                                 <div class="row">
                                     <div class="col-md-9">
@@ -103,39 +121,41 @@
                                         <div class="form-group">
 
                                             <% for(var i=0; i<article.length; i++) {%>
-                                                    <%if (article[i].brouillon == false) { %>
-                                                <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>"><div class="card card-listearticle">
-                                                    <div class="content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-3">
-                                                                                <img src="/images/<%= article[i].img %>" class="img-responsive" alt="">
-                                                                        </div>
-                                                                        <div class="col-md-9">
-                                                                                
-                                                                                   <h2 style="font-weight: bold">
+                                                <%if (article[i].brouillon == false) { %>
+                                                    <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>">
+                                                        <div class="card card-listearticle">
+                                                            <div class="content">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <img src="/images/<%= article[i].img %>" class="img-responsive" alt="">
+                                                                                </div>
+                                                                                <div class="col-md-9">
+
+                                                                                    <h2 style="font-weight: bold">
                                                                                         <%= article[i].title %>
                                                                                     </h2>
                                                                                     <p>
                                                                                         <%= article[i].preview %>
                                                                                     </p>
 
-                                                                               
-                                                                    
-                                                                              
-                
+
+
+
+
+                                                                                </div>
+                                                                            </div>
+
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div></a>
-                                                <% } %>
-                                                <% } %>
+                                                    </a>
+                                                    <% } %>
+                                                        <% } %>
 
                                         </div>
                                     </div>
@@ -146,29 +166,30 @@
                                         <div class="form-group">
 
                                             <% for(var i=0; i<article.length; i++) {%>
-                                                    <%if (article[i].brouillon == true) { %>
-                                                <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>"> <div class="card card-listearticle">
-                                                    <div class="content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                             
-                                                                    
-                                                                    <h5 style="font-weight: bold">
-                                                                        <%= article[i].title %>
-                                                                    </h5>
-                                                                
-                                                                    
+                                                <%if (article[i].brouillon == true) { %>
+                                                    <a class="editArticleLink" href="/admin/liste-articles/editer-article/<%= article[i].id %>">
+                                                        <div class="card card-listearticle">
+                                                            <div class="content">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
 
 
+                                                                            <h5 style="font-weight: bold">
+                                                                                <%= article[i].title %>
+                                                                            </h5>
+
+
+
+
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div></a>
-                                                <% } %>
-                                                <% } %>
-                                            </div>
+                                                    </a>
+                                                    <% } %>
+                                                        <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -178,13 +199,8 @@
                 </div>
             </div>
         </div>
-    </body>
-    
-    </html>
-    
+    </div>
 
-    
+</body>
 
-
-
-
+</html>

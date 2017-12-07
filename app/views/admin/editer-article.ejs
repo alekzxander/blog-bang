@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Blog Bang - Crée un article</title>
+    <title>Blog Bang - Editer un article</title>
     <meta name="viewport" content="width=device-width , initial-scale=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -94,24 +94,27 @@
                                                     <div class="col-md-12">
                                                             
                                                         <div class="form-group">
-                                                                <h2>Titre de l'article </h2>
+                                                                <h3>Titre de l'article </h3>
                                                             <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <hr>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <h2>Résumé de l'article </h2>
+                                                            <h3>Résumé de l'article </h3>
                                                             <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
                                                                     <%= article.preview %>
                                                             </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                        
+                                                <hr>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-3">
+                                                        <h3>Image</h3>
                                                             <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
                                                             <input type="text" name="img" value="<%= article.img %>" readonly>
                                                             <img src="public/images/<%= article.img %> " alt="">
@@ -119,22 +122,13 @@
                                                     </div>
                                                 </div>
                         
-                                                <!-- <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                           <h2> Contenu de l'article </h2>
-                                                            <textarea type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
-                                                                    <%= article.content %>
-                                                            </textarea>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                        
+                                                <hr>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="comment">Texte:</label>
-                                                            <textarea value=" <%= article.content %> "name="content" class="form-control" rows="7">
+                                                            <h3>Contenu</h3>
+                                                            <textarea name="content" class="form-control" rows="7">
                                                                 <%= article.content %> 
                                                             </textarea>
                                                         </div>
@@ -146,8 +140,9 @@
                                             <%if (article.brouillon == true) { %>
                                               <button class="btn btn-success btn-fill pull-left" type="submit" formaction="/admin/liste-articles/publier-brouillon/<%- article._id %>"> Publier </button> 
                                             <% } %>
-                                        
+                                            
                                             <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
+                                            
                         
                                             
                                         </form>

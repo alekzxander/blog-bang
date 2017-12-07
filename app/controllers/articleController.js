@@ -35,7 +35,7 @@ class articleController{
            preview : req.body.preview,
            content : req.body.content,
            img : img_path,
-           date : dateFormat,
+           created_date: 2000,
            brouillon: false
         });
         
@@ -94,6 +94,7 @@ class articleController{
             
 
 
+
         list(req, res){
             Article.find({}, function(err, article){
                 res.render('admin/liste-articles.ejs', {article: article});
@@ -125,8 +126,7 @@ class articleController{
                 title: req.body.title,
                 preview : req.body.preview,
                 content : req.body.content,
-                date : dateFormat,
-                brouillon: req.body.brouillon
+                date : dateFormat
             };
                 
     
@@ -141,7 +141,7 @@ class articleController{
         }
 
   
-        draftToArticle(req, res){
+        /* draftToArticle(req, res){
             let article = {     
                 title: req.body.title,
                 preview : req.body.preview,
@@ -153,9 +153,45 @@ class articleController{
             Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
                 res.redirect('/admin/liste-articles/');
             })
+        } */
+
+        
+        draftToArticle(req ,res){
+            let fileToUpload = req.file;
+       
+    
+            if (fileToUpload != undefined || fileToUpload != null) {
+                target_path = 'public/images/' + fileToUpload.originalname;
+                tmp_path = fileToUpload.path;
+                img_path = fileToUpload.originalname;
+            } else {
+                 img_path = req.body.img;
+                  console.log('defini en tant qu image : ' + img_path)
+            }
+    
+            let article = {
+                img : img_path,
+                title: req.body.title,
+                preview : req.body.preview,
+                content : req.body.content,
+                date : dateFormat,
+                brouillon: false
+            };
+                
+    
+            Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+                if (fileToUpload != undefined || fileToUpload != null) {
+                    let src = fs.createReadStream(tmp_path);
+                    let dest = fs.createWriteStream(target_path);
+                    src.pipe(dest);
+                    fs.unlink(tmp_path);
+                } res.redirect("/admin/liste-articles"); 
+            })
         }
     
     
+
+
         delete(req, res){
             let article = req.body;
             Article.findByIdAndRemove({_id:req.params.id}, article, () => {
