@@ -21,6 +21,7 @@ exports.loggedIn = function(req, res, next)
 
 exports.home = function(req, res) {
 	res.render('admin/dashboard.ejs', {
+		layout : 'admin/dashboard.ejs',
 		error : req.flash("error"),
 		success: req.flash("success"),
 		session:req.session,
@@ -32,6 +33,7 @@ exports.signup = function(req, res) {
 		res.redirect('/home');
 	} else {
 		res.render('signup', {
+			layout : 'signup',
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
@@ -46,6 +48,7 @@ exports.login = function(req, res) {
 		res.render('login', {
 			error : req.flash("error"),
 			success: req.flash("success"),
+			layout : 'login',
 			session:req.session
 		});
 	}
@@ -53,7 +56,7 @@ exports.login = function(req, res) {
 
 exports.reglage = function(req,res){
 	User.find({role:'admin'}, ((err, adm)=>{
-		res.render('admin/adminProfile.ejs', {adm : adm })
+		res.render('admin/adminProfile.ejs', {adm : adm , layout :'admin/adminProfile.ejs' })
 	}));
 }
 
