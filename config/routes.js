@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
     
     app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
-    
+
     app.get('/admin/liste-articles', (req, res)=>{
         Article.find({}, function(err, article){
             res.render('admin/liste-articles.ejs',{layout : 'admin/liste-articles.ejs', article : article});
@@ -35,10 +35,8 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
-
-
     app.get('/', articleView.list);
-    // app.use('/articles/:id', articleView.midll)
+    app.use('/articles/:id', articleView.midlleware)
     app.get('/articles/:id', articleView.articles)
 
 
