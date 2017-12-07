@@ -2,8 +2,9 @@ var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
 var nodemailer = require("nodemailer");
-var Article = require('../models/article.js')
+var Article = require('../models/article.js');
 var User = require('../models/user.js');
+
 
 exports.loggedIn = function(req, res, next)
 {
@@ -20,7 +21,7 @@ exports.loggedIn = function(req, res, next)
 }
 
 exports.home = function(req, res) {
-	res.render('admin/dashboard.ejs', {
+	res.render('admin/dashboard.ejs',{layout : 'admin/dashboard.ejs'}, {
 		error : req.flash("error"),
 		success: req.flash("success"),
 		session:req.session,
@@ -53,18 +54,11 @@ exports.login = function(req, res) {
 
 exports.reglage = function(req,res){
 	User.find({role:'admin'}, ((err, adm)=>{
-		res.render('admin/adminProfile.ejs', {adm : adm })
+		res.render('admin/adminProfile.ejs', {adm : adm, layout : 'admin/adminProfile.ejs' })
 	}));
 }
 
 exports.updateProfile = function(req,res){
-	
-	
-
-	
-		
-	
-		
 	
 	User.findOneAndUpdate({role:'admin'},{ $set:  req.body}, function (err) {
 		if (err) return (err);

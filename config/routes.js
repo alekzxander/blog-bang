@@ -2,12 +2,13 @@
 var userController = require('../app/controllers/userController');
 const permissions = require('./permissions');
 var articleController = require('../app/controllers/articleController');
-const articleView = require('../app/controllers/articleView')
-var multer = require('multer')
+const articleView = require('../app/controllers/articleView');
+var multer = require('multer');
 const Article = require('../app/models/article');
 const upload = multer({
     dest: 'public/images/'
-})
+});
+
 //you can include all your controllers
 
 module.exports = function (app, passport) {
@@ -35,11 +36,11 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
 
     // reglage admin
-    app.get('/admin/myProfile', userController.reglage);
+    app.get('/admin/myProfile', userController.reglage );
     // modifier profile et mdp admin
     app.post('/updateProfile', userController.updateProfile);
     
-    //app.post('/changepass' ,userController.changePassword); 
+    app.post('/changepass' ,userController.changePassword); 
 
     app.get('/', articleView.list);
     app.use('/articles/:id', articleView.midlleware)
@@ -64,8 +65,10 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
-    app.get('/sendMail',userController.mailer)
+    app.get('/sendMail',userController.mailer);
 
+
+    
 
 
 }

@@ -2,8 +2,8 @@ const numeral = require('numeral');
 const bcrypt = require('bcrypt-nodejs');
 const dateFormat = require('dateformat');
 const Article = require('../models/article');
-var multer = require('multer')
-const fs = require('fs')
+var multer = require('multer');
+const fs = require('fs');
 
 let target_path;
 let tmp_path;
