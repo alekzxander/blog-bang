@@ -35,6 +35,14 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
  return bcrypt.compareSync(password, this.password);
 };
+// for change password
+userSchema.pre('save', function(next) {
+	//hash the password
+	let user = this;
+	 if (!user.isModified('password')) return next();
+	this.password = this.generateHash(this.password);
+	next();
+});
 
 //create the model for users and expose it to our app
 module.exports = mongoose.model('ex_users', userSchema);

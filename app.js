@@ -49,6 +49,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css/'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
+app.use('/dist', express.static(__dirname + '/node_modules/bootstrap/dist'));
 //app.set('view engine', 'ejs'); // set up ejs for templating
 
 

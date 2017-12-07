@@ -33,6 +33,14 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
+
+    // reglage admin
+    app.get('/admin/myProfile', userController.reglage);
+    // modifier profile et mdp admin
+    app.post('/updateProfile', userController.updateProfile);
+    
+    //app.post('/changepass' ,userController.changePassword); 
+
     app.get('/', articleView.list);
     app.use('/articles/:id', articleView.midlleware)
     app.get('/articles/:id', articleView.articles)
