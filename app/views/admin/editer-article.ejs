@@ -102,84 +102,11 @@
                     <h1> <%= article.title  %> </h1>
 
                     <form method="post" enctype="multipart/form-data" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
-                        
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                            
-                                                        <div class="form-group">
-                                                                <h3>Titre de l'article </h3>
-                                                            <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <h3>Résumé de l'article </h3>
-                                                            <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
-                                                                    <%= article.preview %>
-                                                            </textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <h3>Image</h3>
-                                                            <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
-                                                            <input type="text" name="img" value="<%= article.img %>" readonly>
-                                                            <img src="public/images/<%= article.img %> " alt="">
-                                                            
-                                                    </div>
-                                                </div>
-                        
-                                                <hr>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <h3>Contenu</h3>
-                                                            <textarea name="content" class="form-control" rows="7">
-                                                                <%= article.content %> 
-                                                            </textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <!-- <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button>  -->
-                                            <button class="btn btn-primary btn-fill pull-left" type="submit"> Mettre à jour  </button> 
-                                      
-                                            <%if (article.brouillon == true) { %>
-                                              <button class="btn btn-success btn-fill pull-left" type="submit" formaction="/admin/liste-articles/publier-brouillon/<%- article._id %>"> Publier </button> 
-                                            <% } %>
-                                            
-                                            <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
-                                            
-                        
-                                            
-                                        </form>
-                                        </div>
-                                       
-                                        
-                                            
-                                        </div>
-                                        </form>
-                                              
-                                 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </body>
-                            
-                            </html>
-                                
 
                         <div class="row">
                             <div class="col-md-3">
                                 
-                                    <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
+                                    <input type="file" name="img" class='btn btn-primary'  placeholder="">
                                     <input type="text" name="img" value="<%= article.img %>" readonly>
                                     
                                     
