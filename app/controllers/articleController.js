@@ -96,23 +96,16 @@ class articleController{
 
         list(req, res){
             Article.find({}, function(err, article){
-                res.render('admin/liste-articles.ejs', {article: article});
+                res.render('admin/liste-articles.ejs', {article: article, layout : 'admin/editer-article.ejs'});
             })
         }
     
     
         showEdit(req,res){
             Article.findOne({_id: req.params.id}, function(err, article) { 
-                res.render('admin/editer-article.ejs', {article});
+                res.render('admin/editer-article.ejs', {article : article,layout : 'admin/editer-article.ejs' });
             }) 
         }
-
-
-  
-
-
-
-
 
 
     edit(req ,res){
@@ -135,6 +128,7 @@ class articleController{
             content : req.body.content,
             date : dateFormat,
             brouillon: req.body.brouillon
+   
         };
             
 
