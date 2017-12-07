@@ -8,7 +8,7 @@ var articleSchema = mongoose.Schema({
 	content: String,
 	date: {type: Date, required: true, default: Date.now},
 	img : String,
-	like : {type : Number, default: 11}
+	like : {type : Number, default: 0}
 
 });
 module.exports = mongoose.model('article', articleSchema);

@@ -35,7 +35,7 @@ class articleController{
            preview : req.body.preview,
            content : req.body.content,
            img : img_path,
-           date : dateFormat,
+           created_date: 2000,
            brouillon: false
         });
         
@@ -94,6 +94,7 @@ class articleController{
             
 
 
+
         list(req, res){
             Article.find({}, function(err, article){
                 res.render('admin/liste-articles.ejs', {article: article, layout : 'admin/editer-article.ejs'});
@@ -103,69 +104,76 @@ class articleController{
     
         showEdit(req,res){
             Article.findOne({_id: req.params.id}, function(err, article) { 
-                res.render('admin/editer-article.ejs', {article : article,layout : 'admin/editer-article.ejs' });
+                res.render('admin/editer-article.ejs', {layout : 'admin/editer-article.ejs', article});
             }) 
         }
 
 
-    edit(req ,res){
-        let fileToUpload = req.file;
-   
-
-        if (fileToUpload != undefined || fileToUpload != null) {
-            target_path = 'public/images/' + fileToUpload.originalname;
-            tmp_path = fileToUpload.path;
-            img_path = fileToUpload.originalname;
-        } else {
-             img_path = req.body.img;
-              console.log('defini en tant qu image : ' + img_path)
-        }
-
-        let article = {
-            img : img_path,
-            title: req.body.title,
-            preview : req.body.preview,
-            content : req.body.content,
-            date : dateFormat,
-            brouillon: req.body.brouillon
-   
-        };
-            
-
-        Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+        edit(req ,res){
+            let fileToUpload = req.file;
+       
+    
             if (fileToUpload != undefined || fileToUpload != null) {
                 target_path = 'public/images/' + fileToUpload.originalname;
                 tmp_path = fileToUpload.path;
                 img_path = fileToUpload.originalname;
             } else {
-                img_path = req.body.img;
+                 img_path = req.body.img;
+                  console.log('defini en tant qu image : ' + img_path)
             }
-        })
+    
+            let article = {
+                img : img_path,
+                title: req.body.title,
+                preview : req.body.preview,
+                content : req.body.content,
+                date : dateFormat,
+                brouillon: req.body.brouillon
+            };
+                
+    
+            Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+                if (fileToUpload != undefined || fileToUpload != null) {
+                    target_path = 'public/images/' + fileToUpload.originalname;
+                    tmp_path = fileToUpload.path;
+                    img_path = fileToUpload.originalname;
+                } else {
+                    img_path = req.body.img;
+                   
+                }
+                res.redirect('/admin/liste-articles');    })
+        }
+    
+        draftToArticle(req, res){
+            let article = {     
+                title: req.body.title,
+                preview : req.body.preview,
+                content : req.body.content,
+                img : img_path,
+                date : dateFormat,
+                brouillon: false 
+            };
+            Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+                res.redirect('/admin/liste-articles/');
+            })
+        }
+    
+    
+        delete(req, res){
+            let article = req.body;
+            Article.findByIdAndRemove({_id:req.params.id}, article, () => {
+                res.redirect('/admin/liste-articles/');
+            })
+        }
+    
+    
     }
+    
+    module.exports = new articleController();
 
-    draftToArticle(req, res){
-        let article = {     
-            title: req.body.title,
-            preview : req.body.preview,
-            content : req.body.content,
-            img : img_path,
-            date : dateFormat,
-            brouillon: false 
-        };
-        Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
-            res.redirect('/admin/liste-articles/');
-        })
-    }
+  
 
 
-    delete(req, res){
-        let article = req.body;
-        Article.findByIdAndRemove({_id:req.params.id}, article, () => {
-            res.redirect('/admin/liste-articles/');
-        })
-    }
 
 
-}
 
-module.exports = new articleController();
