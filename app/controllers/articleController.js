@@ -11,7 +11,11 @@ let img_path;
 class articleController{
     
     create(req, res){
-        res.render('admin/createArticle.ejs');
+        res.render('admin/createArticle.ejs',{layout :'admin/createArticle.ejs'});
+    }
+
+    list(req, res){
+        
     }
 
     postArticle (req, res){
@@ -25,10 +29,7 @@ class articleController{
         } else {
             img_path = req.body.img;
             console.log('defini en tant qu image')
-        }
-      
-        
-        
+        }     
         let myData = new Article({
            title : req.body.title,
            preview : req.body.preview,
@@ -37,7 +38,6 @@ class articleController{
            date : dateFormat,
            brouillon: false
         });
-      
         
         myData.save()
         .then(item => {
@@ -68,8 +68,6 @@ class articleController{
             img_path = req.body.img;
             console.log('defini en tant qu image')
         }
-
-
        let myData = new Article({
             title: req.body.title,
             preview : req.body.preview,
@@ -85,7 +83,6 @@ class articleController{
                 let src = fs.createReadStream(tmp_path);
                 let dest = fs.createWriteStream(target_path);
                 src.pipe(dest);
-
                 fs.unlink(tmp_path);
             }
             res.redirect("/admin/creer-article"); 
@@ -143,14 +140,11 @@ class articleController{
 
         Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
             if (fileToUpload != undefined || fileToUpload != null) {
-                let src = fs.createReadStream(tmp_path);
-                let dest = fs.createWriteStream(target_path);
-                src.pipe(dest);
-
-                fs.unlink(tmp_path);
-                console.log("ça marche pas mec");
-            }else{
-            res.redirect('/admin/liste-articles/');
+                target_path = 'public/images/' + fileToUpload.originalname;
+                tmp_path = fileToUpload.path;
+                img_path = fileToUpload.originalname;
+            } else {
+                img_path = req.body.img;
             }
         })
     }
