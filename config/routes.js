@@ -23,28 +23,26 @@ module.exports = function (app, passport) {
     app.post('/post-article', upload.single('img'),  articleController.postArticle);
     
     app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
-    
+
     app.get('/admin/liste-articles', (req, res)=>{
         Article.find({}, function(err, article){
             res.render('admin/liste-articles.ejs',{layout : 'admin/liste-articles.ejs', article : article});
         })
     })
-
     app.post('/admin/liste-articles/publier-brouillon/:id', articleController.draftToArticle);
-
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
+
     // reglage admin
     app.get('/admin/myProfile', userController.reglage);
     // modifier profile et mdp admin
     app.post('/updateProfile', userController.updateProfile);
     
-    app.post('/changepass' ,userController.changePassword); 
-
+    //app.post('/changepass' ,userController.changePassword); 
 
     app.get('/', articleView.list);
-    // app.use('/articles/:id', articleView.midll)
+    app.use('/articles/:id', articleView.midlleware)
     app.get('/articles/:id', articleView.articles)
 
 
