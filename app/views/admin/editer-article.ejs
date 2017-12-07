@@ -55,19 +55,6 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            <p>azerty</p>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/liste-votes">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            <p>Liste des votes</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -103,42 +90,58 @@
 
                     <form method="post" enctype="multipart/form-data" action ="/admin/liste-articles/editer-article/<%- article._id %>" >
 
-                        <div class="row">
-                            <div class="col-md-3">
+                        
+                                    
                                 
-                                    <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
-                                    <input type="text" name="img" value="<%= article.img %>" readonly>
                                     
-                                    
-                            </div>
                             
-                        </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                     
                                 <div class="form-group">
-                                    <label>Title </label>
+                                    <h2>Titre de l'article </h2>
                                     <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Preview </label>
+                                    <h2>Résumé de l'article </h2>
                                     <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
                                             <%= article.preview %>
                                     </textarea>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                                    <input type="file" name="img" class='btn btn-primary' value="<%= article.img %>" placeholder="">
+                                    <input type="text" name="img" value="<%= article.img %>" readonly>
+                                    <img src="public/images/<%= article.img %> " alt="">
+                                    
+                            </div>
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Content </label>
+                                   <h2> Contenu de l'article </h2>
                                     <textarea type="text" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
                                             <%= article.content %>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="comment">Texte:</label>
+                                    <textarea value=" <%= article.content %> "name="content" class="form-control" rows="7">
+                                        <%= article.content %> 
                                     </textarea>
                                 </div>
                             </div>
