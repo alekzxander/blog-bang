@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var articleSchema = mongoose.Schema({	
 	
 	title: String,
+	author:  String,
 	brouillon: {type:Boolean, default:false},
 	preview: String,
 	content: String,
