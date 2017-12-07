@@ -8,7 +8,7 @@ class articleView{
                 {
                     articlePop : articles,
                     article : articles,
-                     layout : 'layout',
+                     layout : 'layoutIndex',
                  })                   
         }))     
     }
@@ -23,7 +23,7 @@ class articleView{
             res.render('article.ejs',
                  {
                      articlePop : req.articlePop,
-                     layout : 'layout',
+                     layout : 'layoutIndex',
                      id : req.params.id,      
                      mesArticles : articles.filter((article)=>{
                      return article.id == req.params.id
