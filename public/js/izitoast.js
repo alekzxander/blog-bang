@@ -21,17 +21,12 @@ iziToast.settings({
 $('#form').submit(function(e) {
     if ($.trim($("#email").val()) === "" && $.trim($("#name").val()) === "" ) {
         e.preventDefault();
-        iziToast.warning({timeout:2000,position: "topLeft", title: 'Attention', message: 'Il faut un minimim remplir un champs !!'});
+        iziToast.warning({timeout:2000,position: "topLeft", title: 'Attention', message: 'Il faut  remplir un champs au moins !!'});
         //You can return false here as well
     }
 });
- $('#late').click(function () {
 
-    	iziToast.info({timeout:2000,position: "center", title: 'Félicitations', message: 'Votre pot de passe a été modifié!!'});
-    });
-$
-
-
+ 
 
     // info
     $('#infoClick').click(function () {
