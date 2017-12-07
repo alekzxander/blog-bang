@@ -7,9 +7,11 @@ var multer = require('multer');
 const Article = require('../app/models/article');
 const upload = multer({
     dest: 'public/images/'
+
 });
 
 //you can include all your controllers
+
 
 module.exports = function (app, passport) {
 
@@ -30,7 +32,9 @@ module.exports = function (app, passport) {
             res.render('admin/liste-articles.ejs',{layout : 'admin/liste-articles.ejs', article : article});
         })
     })
-    app.post('/admin/liste-articles/publier-brouillon/:id', articleController.draftToArticle);
+
+    app.post('/admin/liste-articles/publier-brouillon/:id',upload.single('img'), articleController.draftToArticle);
+
     app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
     app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
