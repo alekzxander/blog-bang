@@ -8,7 +8,6 @@
 <body>
   <header>
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -39,7 +38,7 @@
   <!-- /.container-fluid -->
 </nav>
 <div class="container">
-  <h1 class="text-center">BLOG TROTTEUR</h1>
+  <h1 class="text-center titleUp">BLOG TROTTEUR</h1>
   <h3 class="text-center">A la réunion</h3>
   <div class="banniere">
     <div class="troteur">
@@ -90,18 +89,31 @@
 </div>
 <div class="container">
   <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-9">
               <%- defineContent('blog') %>  
                  <%- defineContent('myArticle') %>       
           </div>         
-          <div class="col-md-4">
+          <div class="col-md-3">
               <h4 class="populaire">Les articles populaires</h4>
-              <div class="post-pop">   
-                <img src="/../images/ananas.jpg" class="img-responsive" alt="">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, incidunt dicta repellendus ratione
-                  sed, perspiciatis ea exercitationem molestias eius cumque..</p>
-                  <p><a href="#">En savoir plus</a></p>
-            </div>
+              
+                <%for(let i = 0; i < articlePop.length; i++){ %>
+                  <%  if(articlePop[i].like > 30){ %>
+                      <div class="post-pop">   
+                          <img src="/../images/<%= articlePop[i].img %>" class="img-responsive" alt="">
+                          <p><%= articlePop[i].preview %></p>
+                        
+                          <figure class="text-center">
+                              <img src="../images/heart.png" alt="">
+                              <%= articlePop[i].like %>
+                          </figure>                       
+                            <p><a href="/articles/<%= articlePop[i]._id %>/#myArticle">En savoir plus</a></p>
+                      </div>
+                  <%  } %>
+                 
+              <% } %>
+               
+          
+              
 
           </div>
         </div>
