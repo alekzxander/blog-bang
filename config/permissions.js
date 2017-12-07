@@ -1,7 +1,8 @@
 var ConnectRoles = require('connect-roles');
 var permissions = new ConnectRoles({
     failureHandler: (req, res, action) => {
-        // OPTIONAL FUNCTION TO CUSTOMISE CODE THAT RUNS WHEN USER FAILS AUTHORISATION 
+        // OPTIONAL FUNCTION TO CUSTOMISE CODE THAT RUNS WHEN USER FAILS AUTHORISATION
+        var accept = req.headers.accept || ''; 
         res.status(403);
         if (~accept.indexOf('html')) {
             res.render('Accès Refusé', {
@@ -14,7 +15,7 @@ var permissions = new ConnectRoles({
 });
 
 
-permissions.use('Accès page admin', (req) => {
+permissions.use('acces page admin', (req) => {
     if (req.user !== undefined && req.user.role === 'admin') {
         return true;
     }
