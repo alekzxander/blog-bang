@@ -5,6 +5,7 @@ var articleController = require('../app/controllers/articleController');
 const articleView = require('../app/controllers/articleView');
 var multer = require('multer');
 const Article = require('../app/models/article');
+var User = require('../app/models/user.js');
 
 const upload = multer({ dest: 'public/images/' });
 
@@ -13,23 +14,23 @@ module.exports = function (app, passport) {
 
 
     /* GET Admin */
-    app.get('/admin/dashboard',permissions.can('acces page admin'), (req, res) => {
+    app.get('/admin/dashboard',permissions.can('acces page admin'), userController.loggedIn, (req, res) => {
         res.render('admin/dashboard.ejs', { layout: 'admin/dashboard.ejs' })
     });
 
-    app.get('/admin/creer-article', permissions.can('acces page admin'), articleController.create);
-    app.get('/admin/liste-articles', permissions.can('acces page admin'), articleController.list);
-    app.get('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'), articleController.showEdit);
-    app.get('/admin/liste-articles/editer-article/delete/:id', permissions.can('acces page admin'), articleController.delete);
-    app.get('/admin/myProfile', permissions.can('acces page admin'), userController.reglage); 
+    app.get('/admin/creer-article', permissions.can('acces page admin'),userController.loggedIn, articleController.create);
+    app.get('/admin/liste-articles', permissions.can('acces page admin'),userController.loggedIn, articleController.list);
+    app.get('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'),userController.loggedIn,articleController.showEdit);
+    app.get('/admin/liste-articles/editer-article/delete/:id', permissions.can('acces page admin'), userController.loggedIn,articleController.delete);
+    app.get('/admin/myProfile', permissions.can('acces page admin'),userController.loggedIn, userController.reglage); 
 
     /* Post Admin */
-    app.post('/post-article', permissions.can('acces page admin'), upload.single('img'), articleController.postArticle);
-    app.post('/post-draft', permissions.can('acces page admin'), upload.single('img'), articleController.saveAsDraft);
-    app.post('/admin/liste-articles/publier-brouillon/:id', permissions.can('acces page admin'), upload.single('img'), articleController.draftToArticle);
-    app.post('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'), upload.single('img'), articleController.edit);
-    app.post('/updateProfile', permissions.can('acces page admin'), userController.updateProfile);
-    app.post('/changepass', permissions.can('acces page admin'), userController.changePassword);
+    app.post('/post-article', permissions.can('acces page admin'), upload.single('img'),userController.loggedIn, articleController.postArticle);
+    app.post('/post-draft', permissions.can('acces page admin'), upload.single('img'),userController.loggedIn, articleController.saveAsDraft);
+    app.post('/admin/liste-articles/publier-brouillon/:id', permissions.can('acces page admin'),userController.loggedIn, upload.single('img'), articleController.draftToArticle);
+    app.post('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'),userController.loggedIn, upload.single('img'), articleController.edit);
+    app.post('/updateProfile', permissions.can('acces page admin'),userController.loggedIn, userController.updateProfile);
+    app.post('/changepass', permissions.can('acces page admin'),userController.loggedIn, userController.changePassword);
 
     /* Blog */
     app.get('/', articleView.list);
@@ -37,8 +38,8 @@ module.exports = function (app, passport) {
     app.get('/articles/:id', articleView.articles);
 
     /* Sign up */
-    app.get('/login', userController.login);
-    app.get('/signup', userController.signup);
+    app.get('/login', userController.loggedIn,userController.login);
+    app.get('/signup', userController.loggedIn,userController.signup);
 
 
     app.get('/logout', (req, res) => {
@@ -53,8 +54,8 @@ module.exports = function (app, passport) {
     }));
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/', 
-        failureRedirect: '/login', 
+        successRedirect: '/admin/dashboard', 
+        failureRedirect: '/', 
         failureFlash: true 
     }));
 

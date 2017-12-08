@@ -16,7 +16,7 @@ exports.loggedIn = function(req, res, next)
 
 	} else {
 
-		res.redirect('/login');
+		res.redirect('/');
 
 	}
 
@@ -32,7 +32,7 @@ exports.home = function(req, res) {
 
 exports.signup = function(req, res) {
 	if (req.session.user) {
-		res.redirect('/home');
+		res.redirect('/');
 	} else {
 		res.render('signup', {
 			error : req.flash("error"),
