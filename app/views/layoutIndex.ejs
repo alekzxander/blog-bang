@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/izimodal/css/iziModal.min.css">
   <link rel='stylesheet' href='/css/style.css' />
   <link rel="stylesheet" href="/css/iziM.css"/>
+  <link rel="stylesheet" href="/izitoast/dist/css/iziToast.min.css">
 </head>
 <body>
   <header>
@@ -28,23 +29,29 @@
             <a href="" id="signin">Sign in</a>
             <a href="" class="active">New Account</a>
         </header>
+         
         <section class="hide">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
+          <form role="form" id="formlog" action="/login" method="post" >
+            <input type="text" id="logemail" name="email" placeholder="email">
+            <input type="password" id="logpassword" name="password" placeholder="Password">
             <footer>
                 <button data-iziModal-close>Cancel</button>
-                <button class="submit">Log in</button>            
+                <button type="submit" class="submit">Log in</button>            
             </footer>
+            </form>
         </section>
+      
         <section>
-            <input type="text" placeholder="Username">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+          <form role="form" id="formsign" method="post" action="/signup"  >
+            <input type="text"  id="signname" name="username" placeholder="Username">
+            <input type="text" id="signemail" name="email" placeholder="Email">
+            <input type="password"   id="signpassword" name="password" placeholder="Password">
+           
             <footer>
                 <button data-iziModal-close>Cancel</button>
-                <button class="submit">Create Account</button>            
+                <button type="submit" class="submit">Create Account</button>            
             </footer>
+          </form>
         </section>
     </div>
     <!-- fin du modal -->
@@ -165,6 +172,7 @@ toof">
 <script src="/dist/js/bootstrap.min.js"></script>
 <script src="/js/lightboot.js"></script>
 <script src="/izimodal/js/iziModal.min.js" type="text/javascript"></script>
+<script src="/izitoast/dist/js/iziToast.min.js" type="text/javascript"></script>
 <script src="/js/izimodal.js"></script>
 </body>
 </html>
