@@ -48,11 +48,11 @@ exports.login = function(req, res) {
 		res.redirect('/');
 	} else {
 		res.render('login', {
-			layout : 'login',
+			layout : 'login.ejs',
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session,
-			layout:'login.ejs'
+			
 		});
 	}
 }
