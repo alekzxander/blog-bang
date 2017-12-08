@@ -24,6 +24,7 @@
     "express-session": "latest",
     "fs-extra": "latest",
     "http-proxy": "latest",
+    "izimodal": "^1.5.1",
     "izitoast": "^1.2.0",
     "md5": "latest",
     "mime": "latest",

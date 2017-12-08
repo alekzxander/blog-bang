@@ -24,10 +24,11 @@ app.set('view options', { layout:'layout.ejs' });
 app.use(expressLayouts);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '../public'));
 app.use('/dist', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/css', express.static(__dirname+'/public/css'));
 app.use('/izitoast', express.static(__dirname + '/node_modules/izitoast'));
+app.use('/izimodal', express.static(__dirname + '/node_modules/izimodal'));
 
 /***************Mongodb configuratrion********************/
 var mongoose = require('mongoose');

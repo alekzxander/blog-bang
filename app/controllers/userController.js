@@ -2,6 +2,8 @@ var numeral = require('numeral');
 var bcrypt = require('bcrypt-nodejs');
 var dateFormat = require('dateformat');
 var nodemailer = require("nodemailer");
+var multer = require('multer');
+const fs = require('fs');
 var Article = require('../models/article.js');
 var User = require('../models/user.js');
 
@@ -35,38 +37,44 @@ exports.signup = function(req, res) {
 		res.render('signup', {
 			error : req.flash("error"),
 			success: req.flash("success"),
-			session:req.session
+			session:req.session,
+			layout : 'signup'
 		});
 	}
 }
 
 exports.login = function(req, res) {
 	if (req.session.user) {
-		res.redirect('/home');
+		res.redirect('/');
 	} else {
 		res.render('login', {
+			layout : 'login',
 			error : req.flash("error"),
 			success: req.flash("success"),
 			session:req.session
 		});
 	}
 }
-
 exports.reglage = function(req,res){
+	
 	User.find({role:'admin'}, ((err, adm)=>{
-		res.render('admin/adminProfile.ejs', {adm : adm, layout : 'admin/adminProfile.ejs' })
-	}));
+        res.render('admin/adminProfile.ejs', {adm :adm, layout : 'admin/adminProfile.ejs' })
+
+        }))
 }
+
+
 
 exports.updateProfile = function(req,res){
 	
 	User.findOneAndUpdate({role:'admin'},{ $set:  req.body}, function (err) {
 		if (err) return (err);
 	});
-	res.redirect('/admin/dashboard')
+	res.redirect('admin/dashboard')
 }
 
 exports.changePassword = function (req, res) {
+	
 	User.findOne({role:'admin'} , function(err, user) {
 		user.password = req.body.password;
 		user.save(function(err) {
@@ -74,7 +82,7 @@ exports.changePassword = function (req, res) {
 			});
 		});
 	});
-	res.redirect('/admin/dashboard')
+	res.redirect('admin/dashboard')
 }
 
 exports.mailer = function(req, res) {

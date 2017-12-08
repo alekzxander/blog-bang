@@ -46,22 +46,23 @@
                     </div>
                 </div>
             </nav>
-
             <div class="content">
+          
                 <div class="container-fluid">
                     <% for (let i =0; i< adm.length;i++) { %> 
                     <% console.log('viewx'+adm[i].name) %> 
 
-                    <h1>  </h1>
+                   
 
                     <form method="post"  role="form" id="form" action ="/updateProfile">
 
-
+                       
 
                         <div class="row">
                             <div class="col-md-6">
 
                                 <div class="form-group">
+
                                     <label>Nom </label>
                                     <input type="text" id= "name" value="<%= adm[i].name %>" name="name" class="form-control" placeholder="<%= adm[i].name  %>">
                                 </div>
@@ -86,20 +87,22 @@
                     </form>
                 </div>
                 <div class="container-fluid">
-                <form method="post"  role="form" id="formlate" action ="/changepass">
+                <form method="post"  role="form"  action= "/changepass"  id="lateform" >
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" name="password" value=""  class="form-control" placeholder="dernière modif :<%= adm[i].updated_date %>"/>
+                                <input type="text" name="password" id="pass" value="<%= adm[i].password %>" class="form-control" placeholder="nouveau mot de passe"/>
 
 
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-fill pull-left" id="late" type="submit"> Modifier password  </button>
+                    <button class="btn btn-primary btn-fill pull-left"  type="submit"> Modifier password  </button>
 
-                    <% } %> 
+                  
+                
+  <% } %> 
                 </form>
 
 

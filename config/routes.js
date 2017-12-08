@@ -9,6 +9,7 @@ const upload = multer({
     dest: 'public/images/'
 
 });
+var User = require('../app/models/user');
 
 //you can include all your controllers
 
@@ -40,11 +41,16 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
 
     // reglage admin
-    app.get('/admin/myProfile', userController.reglage );
+    app.get('/admin/myProfile',userController.reglage)
+        
+
+ 
+
+   
     // modifier profile et mdp admin
     app.post('/updateProfile', userController.updateProfile);
     
-    app.post('/changepass' ,userController.changePassword); 
+    app.post('/changepass' ,userController.changePassword ); 
 
     app.get('/', articleView.list);
     app.use('/articles/:id', articleView.midlleware)
