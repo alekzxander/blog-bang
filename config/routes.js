@@ -13,7 +13,7 @@ module.exports = function (app, passport) {
 
 
     /* GET Admin */
-    app.get('/admin/dashboard', (req, res) => {
+    app.get('/admin/dashboard',permissions.can('acces page admin'), (req, res) => {
         res.render('admin/dashboard.ejs', { layout: 'admin/dashboard.ejs' })
     });
 
