@@ -21,7 +21,7 @@ module.exports = function (app, passport) {
     app.get('/admin/liste-articles', permissions.can('acces page admin'), articleController.list);
     app.get('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'), articleController.showEdit);
     app.get('/admin/liste-articles/editer-article/delete/:id', permissions.can('acces page admin'), articleController.delete);
-    app.get('/admin/myProfile', permissions.can('acces page admin'), userController.reglage); // 
+    app.get('/admin/myProfile', permissions.can('acces page admin'), userController.reglage); 
 
     /* Post Admin */
     app.post('/post-article', permissions.can('acces page admin'), upload.single('img'), articleController.postArticle);

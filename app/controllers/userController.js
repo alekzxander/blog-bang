@@ -59,7 +59,7 @@ exports.login = function(req, res) {
 exports.reglage = function(req,res){
 	
 	User.find({role:'admin'}, ((err, adm)=>{
-        res.render('admin/adminProfile.ejs', {adm :adm, layout : 'admin/adminProfile.ejs' })
+        res.render('admin/adminPrfile.ejs', {adm :adm, layout : 'admin/adminPrfile.ejs' })
 
         }))
 }

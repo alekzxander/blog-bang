@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Blog Bang Admin</title>
+    <meta name="viewport" content="width=device-width , initial-scale=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+
+    
+    <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css" /> 
+    
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+            <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            <span style="font-weight: bold">Blog</span>Bang
+                        </a>
+                    </div>
+    
+                    <ul class="nav">
+                        <p style="font-size: 15px">Accueil </p>
+                        <li>
+                            <a href="/admin/dashboard">
+                                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                <p>Tableau de bord</p>
+                            </a>
+                        </li>
+                        <hr style="width: 150px; border-color: #cccccc">
+                        <p style="font-size: 15px"> Blog </p>
+                        <li>
+                            <a href="/admin/creer-article">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                <p>Crée un article </p>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="/admin/liste-articles">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <p>Liste des articles</p>
+                            </a>
+                        </li>
+                        <hr style="width: 150px; border-color: #cccccc">
+                        <p style="font-size: 15px"> Administrateur </p>
+                        <li class="active">
+                            <a href="/admin/myProfile">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <p>Mon compte</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+    
+                                <p>Déconnexion</p>
+                            </a>
+                        </li>
+    
+                      
+                    </ul>
+                </div>
+            </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Tableau de bord</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/logout">
+                                    <p>Déconnexion</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/admin/myProfile">
+                                    <i class="fa fa-gear fa-lg" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg hidden-md"></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="content">
+                    
+                          <div class="container-fluid">
+                              <% for (let i =0; i< adm.length;i++) { %> 
+                              <% console.log('viewx'+adm[i].name) %> 
+          
+                             
+          
+                              <form method="post"  role="form" id="form" action ="/updateProfile">
+          
+                                 
+          
+                                  <div class="row">
+                                      <div class="col-md-6">
+          
+                                          <div class="form-group">
+          
+                                              <label>Nom </label>
+                                              <input type="text" id= "name" value="<%= adm[i].name %>" name="name" class="form-control" placeholder="<%= adm[i].name  %>">
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                        <div class="col-md-3">
+                                            
+                                                <input type="file" name="img" class='btn btn-primary'>
+                                                <input type="text" name="img" value="<%= adm.img %>" readonly>
+                                                
+                                                
+                                        </div>
+                                        
+                                    </div>
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label>Email </label>
+                                              <input type="email" id="email" value="<%= adm[i].email %>"  name="email" class="form-control" placeholder="<%= adm[i].email %>"/>
+          
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                                  <!-- <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button>  -->
+                                  <button class="btn btn-primary btn-fill pull-left"  type="submit"> Mettre à jour  </button> 
+          
+          
+          
+          
+                              </form>
+                          </div>
+                          <div class="container-fluid">
+                          <form method="post"  role="form"  action= "/changepass"  id="lateform" >
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Password</label>
+                                          <input type="text" name="password" id="pass" value="<%= adm[i].password %>" class="form-control" placeholder="nouveau mot de passe"/>
+          
+          
+                                      </div>
+                                  </div>
+                              </div>
+                              <button class="btn btn-primary btn-fill pull-left"  type="submit"> Modifier password  </button>
+          
+                            
+                          
+            <% } %> 
+                          </form>
+          
+          
+          
+                      </div>
+                      </div>
+        </div>
+    </div>
+    <script src="/js/jquery.3.2.1.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <script src="/js/lightboot.js"></script>
+</body>
+
+</html>
