@@ -8,7 +8,8 @@ var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({	
 	name: String,
 	email: String,
-	password: String,
+	active_hash: String,
+	password: { type: String, required: true },
 	status: String,
 	img: String,
 	created_date: Date,
@@ -36,6 +37,10 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
  return bcrypt.compareSync(password, this.password);
 };
+userSchema.methods.isMember = function() {
+	return (this.role === "member");
+};
+
 // for change password
 userSchema.pre('save', function(next) {
 	//hash the password

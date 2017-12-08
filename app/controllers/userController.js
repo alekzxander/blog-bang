@@ -8,8 +8,8 @@ var Article = require('../models/article.js');
 var User = require('../models/user.js');
 
 
-exports.loggedIn = function(req, res, next)
-{
+exports.loggedIn = function(req, res, next){
+	
 	if (req.session.user) { // req.session.passport._id
 
 		next();

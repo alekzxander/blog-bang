@@ -1,6 +1,7 @@
 
 var userController = require('../app/controllers/userController');
 const permissions = require('./permissions');
+const request = require('request');
 var articleController = require('../app/controllers/articleController');
 const articleView = require('../app/controllers/articleView');
 var multer = require('multer');
@@ -33,7 +34,8 @@ module.exports = function (app, passport) {
     app.post('/changepass', permissions.can('acces page admin'),userController.loggedIn, userController.changePassword);
 
     /* Blog */
-    app.get('/', articleView.list);
+    app.get('/', articleView.ismember,  articleView.list);
+    app.get('/userProfile', userController.loggedIn,articleView.userProfile);
     app.use('/articles/:id', articleView.midlleware);
     app.get('/articles/:id', articleView.articles);
 
@@ -48,7 +50,7 @@ module.exports = function (app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/', 
+        successRedirect: '/home', 
         failureRedirect: '/signup', 
         failureFlash: true 
     }));

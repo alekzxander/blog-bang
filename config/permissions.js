@@ -9,8 +9,6 @@ var permissions = new ConnectRoles({
                 if(req.user.role == 'member'){
                 res.redirect('/'); // TODO : change the url for the user homepage
 
-            }else {
-                res.redirect('/');
             }
 
             

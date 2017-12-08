@@ -2,11 +2,14 @@
 <html>
 <head>
   <title>blog-bang</title>
+
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/izimodal/css/iziModal.min.css">
   <link rel='stylesheet' href='/css/style.css' />
   <link rel="stylesheet" href="/css/iziM.css"/>
   <link rel="stylesheet" href="/izitoast/dist/css/iziToast.min.css">
+
+
 </head>
 <body>
   <header>
@@ -25,35 +28,35 @@
 
     <!-- Début modal -->
     <div id="modal-custom" data-iziModal-group="grupo1">
-        <button data-iziModal-close class="icon-close">x</button>
-        <header>
-            <a href="" id="signin">Sign in</a>
-            <a href="" class="active">New Account</a>
-        </header>
-         
-        <section class="hide">
-          <form role="form" id="formlog" action="/login" method="post" >
-            <input type="text" id="logemail" name="email" placeholder="email">
-            <input type="password" id="logpassword" name="password" placeholder="Password">
-            <footer>
-                <button data-iziModal-close>Cancel</button>
-                <button type="submit" class="submit">Log in</button>            
-            </footer>
-            </form>
-        </section>
+      <button data-iziModal-close class="icon-close">x</button>
+      <header>
+        <a href="" id="signin">Sign in</a>
+        <a href="" class="active">New Account</a>
+      </header>
+
+      <section class="hide">
+        <form role="form" id="formlog" action="/login" method="post" >
+          <input type="text" id="logemail" name="email" placeholder="email">
+          <input type="password" id="logpassword" name="password" placeholder="Password">
+          <footer>
+            <button data-iziModal-close>Cancel</button>
+            <button type="submit" class="submit">Log in</button>            
+          </footer>
+        </form>
+      </section>
       
-        <section>
-          <form role="form" id="formsign" method="post" action="/signup"  >
-            <input type="text"  id="signname" name="username" placeholder="Username">
-            <input type="text" id="signemail" name="email" placeholder="Email">
-            <input type="password"   id="signpassword" name="password" placeholder="Password">
-           
-            <footer>
-                <button data-iziModal-close>Cancel</button>
-                <button type="submit" class="submit">Create Account</button>            
-            </footer>
-          </form>
-        </section>
+      <section>
+        <form role="form" id="formsign" method="post" action="/signup"  >
+          <input type="text"  id="signname" name="username" placeholder="Username">
+          <input type="text" id="signemail" name="email" placeholder="Email">
+          <input type="password"   id="signpassword" name="password" placeholder="Password">
+
+          <footer>
+            <button data-iziModal-close>Cancel</button>
+            <button type="submit" class="submit">Create Account</button>            
+          </footer>
+        </form>
+      </section>
     </div>
     <!-- fin du modal -->
 
@@ -64,7 +67,29 @@
       <ul class="container nav navbar-nav navbar-right ">
         <li><a href="/">Acceuil <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
-        <li class=" pull-right" ><button class="trigger-custom" data-izimodal-open="#modal-custom">Login/Custom example</button></li>
+        
+        <% for(var i=0; i < user.length; i++) { %>
+ 
+          
+          
+        <% if(user[i].role == 'admin') { %>
+        <li ><button class="trigger-custom btn btn-primary" data-izimodal-open="#modal-custom">Get started</button></li>
+         <% } %>
+        <% if(user[i]._id == userCo) { %>
+        <li >
+          <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle userbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user[i].name %></i>
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li><a href="/userProfile">Mon profil</a></li>
+            <li><a href="/logout">se deconnecter</a></li>
+          </ul>
+        </div>
+      </li>
+         <% } %>
+       <% } %>
+      
       </ul>
     </div>
 
@@ -102,32 +127,32 @@
 
 
 
-      
-    <div class="col-md-5">
-      <p>Laissez nous votre email pour recevoir des newsletter</p>
+
+      <div class="col-md-5">
+        <p>Laissez nous votre email pour recevoir des newsletter</p>
+      </div>
+      <form>
+        <div class="col-md-2">
+          <div class="form-group">
+
+            <input type="email" class="form-control" name="email" id="email" placeholder="Adresse email...">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+
+            <input type="text" class="form-control"  name="nom"id="pwd" placeholder="Votre prenom...">
+          </div>
+        </div>
+        <div class="col-md-3">
+
+          <button type="submit" class="btn btn-default">S'inscrire</button>
+        </div>
+
+      </form>
+
     </div>
-    <form>
-      <div class="col-md-2">
-        <div class="form-group">
-
-          <input type="email" class="form-control" name="email" id="email" placeholder="Adresse email...">
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-
-          <input type="text" class="form-control"  name="nom"id="pwd" placeholder="Votre prenom...">
-        </div>
-      </div>
-      <div class="col-md-3">
-
-        <button type="submit" class="btn btn-default">S'inscrire</button>
-      </div>
-
-    </form>
-
   </div>
-</div>
 </div>
 <div class="container">
   <div class="row">

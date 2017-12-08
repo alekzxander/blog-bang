@@ -1,3 +1,6 @@
+body{
+	background-color: rgb(170, 170, 170);
+}
 .banniere
 {
 	height: 600px;
@@ -13,7 +16,7 @@
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form 
 {
-	background: #2a2a2a;
+	background: #28CA97;
 	border-color: none;
 	border-color: #2a2a2a;
 	border: none;
@@ -73,7 +76,7 @@ hr
 .btn-default
 {
    width:100%;
-   background: #75aa75;
+   background: #28CA97;
    color: white;
    text-shadow: none;
    border-radius: 0px;
@@ -117,7 +120,7 @@ hr
 .post-recent .col-md-7 .date
 {
 	font-size: 13px;
-	color: #75aa75;
+	color: #28CA97;
 }
 .post-recent a
 {
@@ -153,8 +156,8 @@ hr
 }
 .toof 
 {
-	height: 150px;
-	background: #262626;
+	height: 80px;
+	background: #28CA97;
 	margin-top: 200px;
 }
 .article p 
@@ -171,4 +174,7 @@ hr
 .article img
 {
 	height: 384px;
+}
+.userbtn{
+	margin-top: 9px;
 }
