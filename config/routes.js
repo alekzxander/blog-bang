@@ -5,72 +5,73 @@ var articleController = require('../app/controllers/articleController');
 const articleView = require('../app/controllers/articleView');
 var multer = require('multer');
 const Article = require('../app/models/article');
-const upload = multer({
-    dest: 'public/images/'
-
-});
-
-//you can include all your controllers
-
+const upload = multer({ dest: 'public/images/' });
 
 module.exports = function (app, passport) {
 
+
+    /* GET Admin */
+    app.get('/admin/dashboard', (req, res) => {
+        res.render('admin/dashboard.ejs', { layout: 'admin/dashboard.ejs' })
+    });
+    app.get('/admin/creer-article', permissions.can('acces page admin'), articleController.create);
+    app.get('/admin/liste-articles', permissions.can('acces page admin'), articleController.list);
+    app.get('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'), articleController.showEdit);
+    app.get('/admin/liste-articles/editer-article/delete/:id', permissions.can('acces page admin'), articleController.delete);
+    app.get('/admin/myProfile', permissions.can('acces page admin'), userController.reglage); // 
+
+    /* Post Admin */
+    app.post('/post-article', permissions.can('acces page admin'), upload.single('img'), articleController.postArticle);
+    app.post('/post-draft', permissions.can('acces page admin'), upload.single('img'), articleController.saveAsDraft);
+    app.post('/admin/liste-articles/publier-brouillon/:id', permissions.can('acces page admin'), upload.single('img'), articleController.draftToArticle);
+    app.post('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'), upload.single('img'), articleController.edit);
+    app.post('/updateProfile', permissions.can('acces page admin'), userController.updateProfile);
+    app.post('/changepass', permissions.can('acces page admin'), userController.changePassword);
+
+    /* Blog */
+    app.get('/', articleView.list);
+    app.use('/articles/:id', articleView.midlleware);
+    app.get('/articles/:id', articleView.articles);
+
+    /* Sign up */
     app.get('/login', userController.login);
     app.get('/signup', userController.signup);
 
-    /* Admin */
-    app.get('/admin/dashboard', (req, res)=>{
-        res.render('admin/dashboard.ejs', {layout : 'admin/dashboard.ejs'})
-    });
-    app.get('/admin/creer-article', articleController.create);
-    app.post('/post-article', upload.single('img'),  articleController.postArticle);
-    
-    app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
 
-    app.get('/admin/liste-articles', articleController.list);
-    
-
-    app.post('/admin/liste-articles/publier-brouillon/:id',upload.single('img'), articleController.draftToArticle);
-
-    app.get('/admin/liste-articles/editer-article/:id', articleController.showEdit);
-    app.post('/admin/liste-articles/editer-article/:id', upload.single('img'), articleController.edit);
-    app.get('/admin/liste-articles/editer-article/delete/:id', articleController.delete);
-
-    // reglage admin
-    app.get('/admin/myProfile', userController.reglage );
-    // modifier profile et mdp admin
-    app.post('/updateProfile', userController.updateProfile);
-    
-    app.post('/changepass' ,userController.changePassword); 
-
-    app.get('/', articleView.list);
-    app.use('/articles/:id', articleView.midlleware)
-    app.get('/articles/:id', articleView.articles)
-
-
-
-    /* passport login */
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        successRedirect: '/', 
+        failureRedirect: '/signup', 
+        failureFlash: true 
     }));
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/', // redirect to the secure profile section
-        failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        successRedirect: '/', 
+        failureRedirect: '/login', 
+        failureFlash: true 
     }));
 
-    app.get('/sendMail',userController.mailer);
-
-
-    
-
-
+    app.get('/sendMail', userController.mailer);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
