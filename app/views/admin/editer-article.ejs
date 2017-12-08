@@ -106,7 +106,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 
-                                    <input type="file" name="img" class='btn btn-primary'  placeholder="">
+                                    <input type="file" name="img" class='btn btn-primary'>
                                     <input type="text" name="img" value="<%= article.img %>" readonly>
                                     
                                     
@@ -150,7 +150,26 @@
                       <button class="btn btn-success btn-fill pull-left" type="submit" formaction="/admin/liste-articles/publier-brouillon/<%- article._id %>"> Publier </button> 
                     <% } %>
                 
-                    <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
+                     <!-- <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a> -->
+
+
+                    <div id="oModal" class="oModal">
+                        <div>
+                            <header>
+                            <h2> Êtes vous sur de vouloir supprimer cette article ?  </h2>
+                            </header>
+                            <section>
+                            <p> L'article sera complétement supprimer et vous n'aurez plus jamais accès à celui-ci </p>
+                            </section>
+                            <footer class="cf">
+                           
+                            <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>" class="btn btn-danger btn-fill" title="Fermer la fenêtre" style="margin-left: 10px">Supprimer </a>
+                            <a href="#fermer" class="btn droite btn-fill" title="Fermer la fenêtre"> Annuler </a>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <a href="#oModal" class="btn btn-danger btn-fill">Supprimer </a>
 
                     
                 </form>

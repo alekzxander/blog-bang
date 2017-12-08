@@ -51,7 +51,8 @@ exports.login = function(req, res) {
 			layout : 'login',
 			error : req.flash("error"),
 			success: req.flash("success"),
-			session:req.session
+			session:req.session,
+			layout:'login.ejs'
 		});
 	}
 }

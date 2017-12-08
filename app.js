@@ -16,6 +16,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var dateFormat = require('dateformat');
 var nodemailer = require('nodemailer');
+const dotEnv = require('dotenv').load();
 var now = new Date();
 
 app.set('views', __dirname + '/views');
