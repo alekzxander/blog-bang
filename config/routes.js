@@ -27,11 +27,8 @@ module.exports = function (app, passport) {
     
     app.post('/post-draft', upload.single('img'), articleController.saveAsDraft);
 
-    app.get('/admin/liste-articles', (req, res)=>{
-        Article.find({}, function(err, article){
-            res.render('admin/liste-articles.ejs',{layout : 'admin/liste-articles.ejs', article : article});
-        })
-    })
+    app.get('/admin/liste-articles', articleController.list);
+    
 
     app.post('/admin/liste-articles/publier-brouillon/:id',upload.single('img'), articleController.draftToArticle);
 
@@ -49,6 +46,7 @@ module.exports = function (app, passport) {
     app.get('/', articleView.list);
     app.use('/articles/:id', articleView.midlleware)
     app.get('/articles/:id', articleView.articles)
+
 
 
     /* passport login */
