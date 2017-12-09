@@ -35,7 +35,6 @@ class articleController{
            preview : req.body.preview,
            content : req.body.content,
            img : img_path,
-           created_date: 2000,
            brouillon: false
         });
         
@@ -73,7 +72,6 @@ class articleController{
             preview : req.body.preview,
             content : req.body.content,
             img : img_path,
-            date : dateFormat,
             brouillon: true 
         })
 
@@ -97,7 +95,7 @@ class articleController{
 
         list(req, res){
             Article.find({}, function(err, article){
-                res.render('admin/liste-articles.ejs', {article: article, layout : 'admin/editer-article.ejs'});
+                res.render('admin/liste-articles.ejs', {article, layout : 'admin/liste-articles.ejs'});
             })
         }
     
@@ -111,8 +109,6 @@ class articleController{
 
         edit(req ,res){
             let fileToUpload = req.file;
-       
-    
             if (fileToUpload != undefined || fileToUpload != null) {
                 target_path = 'public/images/' + fileToUpload.originalname;
                 tmp_path = fileToUpload.path;
@@ -127,8 +123,6 @@ class articleController{
                 title: req.body.title,
                 preview : req.body.preview,
                 content : req.body.content,
-                date : dateFormat,
-                brouillon: req.body.brouillon
             };
                 
     
@@ -145,15 +139,33 @@ class articleController{
         }
     
         draftToArticle(req, res){
+            let fileToUpload = req.file;
+            if (fileToUpload != undefined || fileToUpload != null) {
+                target_path = 'public/images/' + fileToUpload.originalname;
+                tmp_path = fileToUpload.path;
+                img_path = fileToUpload.originalname;
+            } else {
+                 img_path = req.body.img;
+                  console.log('defini en tant qu image : ' + img_path)
+            }
             let article = {     
                 title: req.body.title,
                 preview : req.body.preview,
                 content : req.body.content,
                 img : img_path,
-                date : dateFormat,
                 brouillon: false 
             };
+
             Article.findByIdAndUpdate({_id:req.params.id}, article, () => {
+                if (fileToUpload != undefined || fileToUpload != null) {
+                    if (fileToUpload != undefined || fileToUpload != null) {
+                        let src = fs.createReadStream(tmp_path);
+                        let dest = fs.createWriteStream(target_path);
+                        src.pipe(dest);
+        
+                        fs.unlink(tmp_path);
+                    }
+                }
                 res.redirect('/admin/liste-articles/');
             })
         }

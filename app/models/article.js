@@ -8,7 +8,14 @@ var articleSchema = mongoose.Schema({
 	content: String,
 	date: {type: Date, required: true, default: Date.now},
 	img : String,
-	like : {type : Number, default: 0}
+	like : {type : Number, default: 0},
+	commentaire : [
+		{
+			name : { type : String},
+			date : { type : Date, required:true, default: Date.now},
+			text : { type : String}
+		}]
+	
 
 });
 module.exports = mongoose.model('article', articleSchema);
