@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 const Article = require('../models/article');
 var multer = require('multer');
 const fs = require('fs');
+const User = require('../models/user.js');
 
 let target_path;
 let tmp_path;
@@ -10,7 +11,9 @@ let img_path;
 class articleController {
 
     create(req, res) {
+            
         res.render('admin/createArticle.ejs', { layout: 'admin/createArticle.ejs' });
+    
     }
 
     // Crée un article    
@@ -31,6 +34,7 @@ class articleController {
            preview : req.body.preview,
            content : req.body.content,
            img : img_path,
+           author: req.body.author,
            brouillon: false
         });
 
@@ -68,6 +72,7 @@ class articleController {
             preview: req.body.preview,
             content: req.body.content,
             img: img_path,
+            author: req.body.author,
             brouillon: true
         })
 
@@ -124,6 +129,7 @@ class articleController {
             preview: req.body.preview,
             content: req.body.content,
             img: img_path,
+            author: req.body.author,
             brouillon: false
         };
         Article.findByIdAndUpdate({ _id: req.params.id }, article, () => {

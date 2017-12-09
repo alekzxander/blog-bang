@@ -79,7 +79,7 @@
               <% if(user[i].role == 'admin') { %>
                 <li><button class="trigger-custom" data-izimodal-open="#modal-custom">Get started</button></li>
                 <% } %>
-                  <% if(user[i]._id == userCo) { %>
+                  <% if(user[i]._id == userCo && user[i].role == 'member') { %>
                     <li>
                       <div class="btn-group">
                         <button type="button" class="trigger-custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user[i].name %></i>

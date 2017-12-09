@@ -15,7 +15,7 @@ class articleView{
             
             User.find({_id:req.session.user._id}, function(err, user){
 
-             Article.find({},  function(err, articles){
+               Article.find({},  function(err, articles){
 
                 res.render('blog', {
 
@@ -52,7 +52,7 @@ class articleView{
         })    
     }
     userProfile(req, res){
-       
+
 
         User.find({_id:req.session.user._id}, ((err, userR) =>{
             res.render('admin/userProfile.ejs', {userR :userR, layout : 'admin/userProfile.ejs' })
@@ -124,17 +124,22 @@ midlleware(req, res, next){
     }))
 }
 articles(req, res){
+    let userCo = 1;
     Article.find({}, ((err, articles)=>{
-        res.render('article.ejs',
-        {
-           articlePop : req.articlePop,
-           layout : 'layoutIndex',
-           id : req.params.id,      
-           mesArticles : articles.filter((article)=>{
-               return article.id == req.params.id
-           }) 
-           [0]
-       })
+        User.find({}, function(err, user){
+
+            res.render('article.ejs',
+            {   user:user,
+                userCo:userCo,
+                articlePop : req.articlePop,
+                layout : 'layoutIndex',
+                id : req.params.id,      
+                mesArticles : articles.filter((article)=>{
+                 return article.id == req.params.id
+             }) 
+                [0]
+            })
+        })
     }))
 }
 }
