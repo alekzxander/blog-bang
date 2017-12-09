@@ -34,41 +34,45 @@
                 </div>
 
                 <ul class="nav">
-                    <li>
-                        <a href="/admin/dashboard">
-                            <i class="fa fa-tachometer" aria-hidden="true"></i>
-                            <p>Tableau de bord</p>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/creer-article">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            <p>Créer un article </p>
-                        </a>
-                    </li>
-
-                    <li class="active">
-                        <a href="/admin/liste-articles">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>Liste des articles</p>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            <p>azerty</p>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/liste-votes">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            <p>Liste des votes</p>
-                        </a>
-                    </li>
-                </ul>
+                        <p style="font-size: 15px">Accueil </p>
+                        <li>
+                            <a href="/admin/dashboard">
+                                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                <p>Tableau de bord</p>
+                            </a>
+                        </li>
+                        <hr style="width: 150px; border-color: #cccccc">
+                        <p style="font-size: 15px"> Blog </p>
+                        <li>
+                            <a href="/admin/creer-article">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                <p>Crée un article </p>
+                            </a>
+                        </li>
+    
+                        <li class="active">
+                            <a href="/admin/liste-articles">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <p>Liste des articles</p>
+                            </a>
+                        </li>
+                        <hr style="width: 150px; border-color: #cccccc">
+                        <p style="font-size: 15px"> Administrateur </p>
+                        <li>
+                            <a href="/admin/myProfile">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <p>Mon compte</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+    
+                                <p>Déconnexion</p>
+                            </a>
+                        </li>
+    
+                    </ul>
             </div>
         </div>
 
@@ -106,7 +110,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 
-                                    <input type="file" name="img" class='btn btn-primary'  placeholder="">
+                                    <input type="file" name="img" class='btn btn-primary'>
                                     <input type="text" name="img" value="<%= article.img %>" readonly>
                                     
                                     
@@ -150,7 +154,26 @@
                       <button class="btn btn-success btn-fill pull-left" type="submit" formaction="/admin/liste-articles/publier-brouillon/<%- article._id %>"> Publier </button> 
                     <% } %>
                 
-                    <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a>
+                     <!-- <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>">Delete</a> -->
+
+
+                    <div id="oModal" class="oModal">
+                        <div>
+                            <header>
+                            <h2> Êtes vous sur de vouloir supprimer cette article ?  </h2>
+                            </header>
+                            <section>
+                            <p> L'article sera complétement supprimer et vous n'aurez plus jamais accès à celui-ci </p>
+                            </section>
+                            <footer class="cf">
+                           
+                            <a href="/admin/liste-articles/editer-article/delete/<%- article._id %>" class="btn btn-danger btn-fill" title="Fermer la fenêtre" style="margin-left: 10px">Supprimer </a>
+                            <a href="#fermer" class="btn droite btn-fill" title="Fermer la fenêtre"> Annuler </a>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <a href="#oModal" class="btn btn-danger btn-fill">Supprimer </a>
 
                     
                 </form>
