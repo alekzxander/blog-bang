@@ -12,11 +12,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-weight: inherit;
     font-style: inherit;
     /* font-size: 100%; */
-    font-family: inherit;
+    /* font-family: inherit; */
     vertical-align: baseline;
 }
 :focus { outline: 0;}
-a:link, a:visited, a:active{text-decoration:none; color: #21b3b4}
+a:link, a:visited, a:active{text-decoration:none;color: #28ca96;}
 table {	border-collapse: separate;border-spacing: 0; width: 100%;}
 th, td {text-align: left; font-weight: normal;}
 tr{line-height: 30px;}

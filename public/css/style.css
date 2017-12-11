@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+* {
+	
+	font-family: 'Lora', serif;
+}
 body{
 	background-color: rgb(170, 170, 170);
 }
@@ -7,7 +12,7 @@ body{
 	width:100%;
 	background: url('/../images/emile-perron-190221.jpg');
 	background-size: cover;
-	margin-top: 50px;
+	margin-top: 35px;
 }
 
 .titleUp
@@ -164,32 +169,52 @@ hr
 {
 	text-decoration: none;
 }
-.toof 
+.article 
 {
-	height: 80px;
-	background: #28CA97;
-	margin-top: 200px;
+	margin-bottom: 120px;
 }
+
 .article p 
 {
-	margin-top: 60px;
+	/* margin-top: 60px; */
+	font-size: 17px;
 	line-height: 24px;
+	text-align: justify;
+	font-family: 'Slabo 27px', serif;
 }
-.btn-success
-{
-	background:#75aa75;
-	padding: 3px 8px 3px 8px;
-	
-}
+
 .article img
 {
-	height: 384px;
+	height: 438px;
+	width: 100%;
+	margin-bottom: 30px;
+	/* margin-top: 30px; */
 }
 .userbtn{
 	margin-top: 9px;
 }
-footer
+.footLayout
 {
-	background: #1D1D1D;
 	height: 150px;
+	background: #3C3C3C;
+}
+.article  h2
+{
+	margin-bottom: 29px;
+}
+.article strong 
+{
+	color: #75aa75;
+}
+.article h4
+{
+	margin-top: 40px;
+}
+.article h5
+{
+	color: #414141;
+}
+.article .btn-primary
+{
+	margin-top: 41px;
 }

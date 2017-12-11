@@ -2,20 +2,23 @@
             <div id="myArticle">
                 <br>
                 <br>
-                <br>
+              
                 <div class="article">
-                    <h2><%= mesArticles.title %></h2>
                     <img src="/../images/<%= mesArticles.img %>"  class="img-responsive"alt="">
-                    <p><%= mesArticles.preview %></p>
-                    <br>
+                    <h2><%= mesArticles.title %></h2>
+
                     <p><%= mesArticles.content %></p>
-                    <h2>Ecrit par: <%= mesArticles.author %></h2>
-                    <%console.log(mesArticles)  %>
+                    <div class="row">
+                        <div class="col-md-6">
+                         <h4>Ecrit par: <strong><%= mesArticles.author %></strong> </h4>
+                         <h5><%= mesArticles.date %></h5>
+                        </div>
+                        <div class="col-md-6">
+                        <figure class="text-right"><button class="btn btn-primary ">Like</button></figure>
+                        </div>
+                    </div>
                     
-                   <figure class="text-right">
-                        <button class="btn btn-success ">Like</button>
-                        
-                   </figure> 
+                    
                 </div>  
              </div>   
 
