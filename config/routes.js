@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
     app.post('/admin/liste-articles/editer-article/:id', permissions.can('acces page admin'),userController.loggedIn, upload.single('img'), articleController.edit);
     app.post('/updateProfile', permissions.can('acces page admin'),userController.loggedIn, userController.updateProfile);
     app.post('/changepass', permissions.can('acces page admin'),userController.loggedIn, userController.changePassword);
-
+    app.post('/userRegister', userController.userRegister);
     /* Blog */
     app.get('/', articleView.ismember,  articleView.list);
     app.get('/userProfile', userController.loggedIn,articleView.userProfile);
