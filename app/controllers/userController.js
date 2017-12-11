@@ -6,14 +6,14 @@ var multer = require('multer');
 const fs = require('fs');
 var Article = require('../models/article.js');
 var User = require('../models/user.js');
-var userNewsletter = require('../models/userNewsletter.js');
+var UserNewsletter = require('../models/userNewsletter.js');
 
 exports.userRegister = function(req,res){
-	let myUser = new userNewsletter(
-		{
-			email : req.body.email,
-			name : req.body.name
-		}
+	let myUser = new UserNewsletter(
+	{
+		email : req.body.email,
+		name : req.body.name
+	}
 	)
 
 	
@@ -79,9 +79,9 @@ exports.login = function(req, res) {
 exports.reglage = function(req,res){
 	
 	User.find({role:'admin'}, ((err, adm)=>{
-        res.render('admin/adminPrfile.ejs', {adm :adm, layout : 'admin/adminPrfile.ejs' })
+		res.render('admin/adminPrfile.ejs', {adm :adm, layout : 'admin/adminPrfile.ejs' })
 
-        }))
+	}))
 }
 
 
@@ -107,6 +107,15 @@ exports.changePassword = function (req, res) {
 }
 
 exports.mailer = function(req, res) {
+	
+	UserNewsletter.find({}, function(err, news){
+		news.filter((newsfilter) => {
+			
+			
+	
+	
+		console.log(newsfilter.email);
+
 	var smtpTransport = nodemailer.createTransport({
 		service: "gmail",
 
@@ -115,16 +124,17 @@ exports.mailer = function(req, res) {
 			pass: "admin974"
 		}
 	});
-
+	
 	var mail = {
-		to: 'oinanaphone@gmail.com',
+		to: newsfilter.email,
 		from: 'blogbang974.com',
-		subject: 'Validation de nouveau mot de passe',
+		subject: 'YOYOYO LES GROS GOLOGO'+newsfilter.name,
 		text: 'Ceci est un message automatique generé lors de votre premiere connexion sur le site de vote de la CFDT\n\n' +
 		'Veuillez cliquer sur le lien suivant pour aller sur la page de validation de mot de passe:\n\n' +
 		'http://' + req.headers.host + '/login/ \n\n' +
 		'Si vous etes deja connecté a votre espace de vote CFDT,ne tenez pas compte de ce message et votre mot de passe restera inchangé.\n'
 	};
+
 
 	smtpTransport.sendMail(mail, function(error, response){
 		if(error){
@@ -135,6 +145,11 @@ exports.mailer = function(req, res) {
 		}
 		smtpTransport.close();
 	});
+
+		});
+	});
+
+	
 
 }
 
