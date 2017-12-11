@@ -6,7 +6,26 @@ var multer = require('multer');
 const fs = require('fs');
 var Article = require('../models/article.js');
 var User = require('../models/user.js');
+var userNewsletter = require('../models/userNewsletter.js');
 
+exports.userRegister = function(req,res){
+	let myUser = new userNewsletter(
+		{
+			email : req.body.email,
+			name : req.body.name
+		}
+	)
+
+	
+	console.log('ok ca marche')
+	myUser.save();
+	res.redirect('/')
+	.catch(err =>{
+		res.render('/', {layout : 'layout'})
+		res.status(400).send("Impossible de sauvegarder dans la db");
+		
+	})
+}
 
 exports.loggedIn = function(req, res, next){
 	
@@ -118,3 +137,6 @@ exports.mailer = function(req, res) {
 	});
 
 }
+
+
+
