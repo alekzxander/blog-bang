@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Blog Bang Admin</title>
+    <title>Blog Bang - Mon compte </title>
     <meta name="viewport" content="width=device-width , initial-scale=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                                <a href="/logout">
                                 <i class="fa fa-power-off" aria-hidden="true"></i>
     
                                 <p>Déconnexion</p>
@@ -90,34 +90,19 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Tableau de bord</a>
+                        <a class="navbar-brand" href="#">Mon compte administrateur</a>
                     </div>
 
                     <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/logout">
-                                    <p>Déconnexion</p>
-                                </a>
-                            </li>
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/admin/myProfile">
-                                    <i class="fa fa-gear fa-lg" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="separator hidden-lg hidden-md"></li>
-                        </ul>
+                        
                     </div>
 
                 </div>
             </nav>
 
-            <div class="content">
+            <!-- <div class="content">
                     
-                          <div class="container-fluid">
+                          <div class="container">
                               <% for (let i =0; i< adm.length;i++) { %> 
                               <% console.log('viewx'+adm[i].name) %> 
           
@@ -128,7 +113,7 @@
                                  
           
                                   <div class="row">
-                                      <div class="col-md-6">
+                                      <div class="col-md-5">
           
                                           <div class="form-group">
           
@@ -136,20 +121,21 @@
                                               <input type="text" id= "name" value="<%= adm[i].name %>" name="name" class="form-control" placeholder="<%= adm[i].name  %>">
                                           </div>
                                       </div>
-                                  </div>
-
-                                  <div class="row">
-                                        <div class="col-md-3">
-                                            
+                                      <div class="col-md-7">
+                                            <img src="/images/css.png" class="img-responsive" alt="">
                                                 <input type="file" name="img" class='btn btn-primary'>
                                                 <input type="text" name="img" value="<%= adm.img %>" readonly>
                                                 
                                                 
                                         </div>
+                                  </div>
+
+                                  <div class="row">
+                                        
                                         
                                     </div>
                                   <div class="row">
-                                      <div class="col-md-6">
+                                      <div class="col-md-5">
                                           <div class="form-group">
                                               <label>Email </label>
                                               <input type="email" id="email" value="<%= adm[i].email %>"  name="email" class="form-control" placeholder="<%= adm[i].email %>"/>
@@ -158,7 +144,7 @@
                                       </div>
                                   </div>
                                   
-                                  <!-- <button class="btn btn-info btn-fill" formaction="/post-article" type="submit">Publier</button>  -->
+                                
                                   <button class="btn btn-primary btn-fill pull-left"  type="submit"> Mettre à jour  </button> 
           
           
@@ -166,13 +152,13 @@
           
                               </form>
                           </div>
-                          <div class="container-fluid">
+                          <div class="container">
                           <form method="post"  role="form"  action= "/changepass"  id="lateform" >
                               <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-5">
                                       <div class="form-group">
                                           <label>Password</label>
-                                          <input type="text" name="password" id="pass" value="<%= adm[i].password %>" class="form-control" placeholder="nouveau mot de passe"/>
+                                          <input type="text" name="password" id="pass" value="" class="form-control" placeholder="nouveau mot de passe"/>
           
           
                                       </div>
@@ -188,6 +174,61 @@
           
           
                       </div>
+                      </div> -->
+
+                      <div class="content">
+                          <div class="container">
+                                <% for (let i =0; i< adm.length;i++) { %> 
+                                <form method="post"  role="form" id="form" action ="/updateProfile">
+                              <div class="col-md-6">
+
+                                 <div class="row">
+                                     <div class="col-md-12">
+                                         <div class="form-group">
+          
+                                              <label>Nom </label>
+                                              <input type="text" id= "name" value="<%= adm[i].name %>" name="name" class="form-control" placeholder="<%= adm[i].name  %>">
+                                          </div>
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                        <div class="col-md-12">
+                                                <div class="form-group">
+                                                        <label>Email </label>
+                                                        <input type="email" id="email" value="<%= adm[i].email %>"  name="email" class="form-control" placeholder="<%= adm[i].email %>"/>
+                                                    </div>
+                                                    <button class="btn btn-primary btn-fill pull-left"  type="submit"> Mettre à jour  </button> 
+                    
+                                        </div>
+                                    </div>
+                                </form>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <form method="post"  role="form"  action= "/changepass"  id="lateform" >
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input type="text" name="password" id="pass" value="" class="form-control" placeholder="nouveau mot de passe"/>
+                                                    </div>
+                                                    <button class="btn btn-primary btn-fill pull-left"  type="submit"> Modifier password  </button>
+                                                </form>
+                                        </div>
+                                        
+                                    </div>
+
+                              </div>
+
+                              <div class="col-md-6">
+                                    <img src="/images/css.png" class="img-responsive" alt="">
+                                    <input type="file" name="img" class='btn btn-primary'>
+                                    <input type="text" name="img" value="<%= adm.img %>" readonly>
+                              </div>
+                              <% } %>
+
+                              
+                           
+                          </div>
                       </div>
         </div>
     </div>
