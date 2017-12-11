@@ -118,6 +118,3 @@ exports.mailer = function(req, res) {
 	});
 
 }
-
-
-

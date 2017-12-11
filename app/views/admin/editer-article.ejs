@@ -28,7 +28,7 @@
         <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="#" class="simple-text">
+                    <a href="/" class="simple-text">
                         <span style="font-weight: bold">Blog</span>Bang
                     </a>
                 </div>
@@ -123,7 +123,7 @@
                                     
                                 <div class="form-group">
                                     <label>Title </label>
-                                    <input type="text" value="<%= article.title %>" name="title" class="form-control" placeholder="Title">
+                                    <input type="text" value="<%= article.title %>" maxlength="40" name="title" class="form-control" placeholder="Title">
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Preview </label>
-                                    <textarea type="text" value="<%= article.preview %>" name="preview" class="form-control" placeholder="Title">
+                                    <textarea type="text" value="<%= article.preview %>" maxlength="440" name="preview" class="form-control" placeholder="Title">
                                             <%= article.preview %>
                                     </textarea>
                                 </div>

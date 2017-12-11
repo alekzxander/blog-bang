@@ -14,10 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var dateFormat = require('dateformat');
 var nodemailer = require('nodemailer');
 const dotEnv = require('dotenv').load();
-var now = new Date();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
@@ -54,12 +52,11 @@ app.set('view engine', 'ejs');
 app.use('/dist', express.static(__dirname + '/node_modules/bootstrap/dist'));
 //app.set('view engine', 'ejs'); // set up ejs for templating
 
-
 //required for passport
 //app.use(session({ secret: 'iloveyoudear...' })); // session secret
 
 app.use(session({
-    secret: 'I Love India...',
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true
 }));

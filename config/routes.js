@@ -10,9 +10,7 @@ var User = require('../app/models/user.js');
 
 const upload = multer({ dest: 'public/images/' });
 
-
 module.exports = function (app, passport) {
-
 
     /* GET Admin */
     app.get('/admin/dashboard',permissions.can('acces page admin'), userController.loggedIn, (req, res) => {

@@ -8,11 +8,8 @@ const User = require('../models/user.js');
 class articleView{
     ismember(req, res, next){ 
 
-
         if (req.session.user) { 
-
             let userCo = req.session.user._id;
-            
             User.find({_id:req.session.user._id}, function(err, user){
 
                Article.find({},  function(err, articles){
