@@ -52,7 +52,7 @@
 
                     <li>
                         <a href="/admin/liste-articles">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-list" aria-hidden="true"></i>
                             <p>Liste des articles</p>
                         </a>
                     </li>
@@ -60,13 +60,13 @@
                     <p style="font-size: 15px"> Administrateur </p>
                     <li>
                         <a href="/admin/myProfile">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                             <p>Mon compte</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
 
                             <p>Déconnexion</p>
                         </a>
@@ -120,10 +120,20 @@
                                         </div>
 
                                         <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+
+                                                    <h4>Auteur</h4>
+                                                    <input name="author" class="form-control" placeholder="Nom de l'autheur " type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <h4>Image</h4>
-                                                    <input class="btn btn-primary" type="file" maxlength="440" name="img" placeholder="Image Upload">
+                                                    <input style="width: 100%" class="btn btn-primary" type="file" maxlength="440" name="img" placeholder="Image Upload">
                                                 </div>
                                             </div>
                                         </div>
@@ -135,7 +145,7 @@
                                                 <div class="form-group">
 
                                                     <h4>Résumé</h4>
-                                                    <input name="preview" class="form-control" placeholder="Déroulez la liste ou créez un nouveau type" type="text">
+                                                    <input name="preview" class="form-control" placeholder="" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -143,19 +153,13 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <h4>Contenu</h4>
-                                                    <input type="text" name="content" class="form-control" rows="7"></input
+                                                     <!-- <input type="text" name="content" class="form-control" rows="7"></input>  -->
+                                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <h4>Autheur</h4>
-                                                    <input name="author" class="form-control" placeholder="Nom de l'autheur " type="text">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
 
                                         <button type="submit" class="btn btn-primary btn-fill pull-left" formaction="/post-draft"> Sauvegarder en tant que brouillon </button>
                                         <button type="submit" class="btn btn-success btn-fill pull-right" formaction="/post-article">Créer l'article</button>
