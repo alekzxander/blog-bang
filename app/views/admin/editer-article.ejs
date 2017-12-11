@@ -103,25 +103,23 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <h1>
-                        <%= article.title  %>
-                    </h1>
+              
 
                     <form method="post" enctype="multipart/form-data" action="/admin/liste-articles/editer-article/<%- article._id %>">
 
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <h4>Titre </h4>
+                                    <label > Titre </label>
                                     <input type="text" value="<%= article.title %>" maxlength="40" name="title" class="form-control" placeholder="Title">
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-5">
-                                <h4>Image </h4>
+                            <div class="col-md-4">
+                                <label > Image </label>
                                 <input style="width: 100%" type="file" name="img" class='btn btn-primary'>
                                 <input type="text" name="img" value="<%= article.img %>" readonly>
 
@@ -134,18 +132,18 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Résumé</h4>
-                                    <textarea type="text" value="<%= article.preview %>" maxlength="440" name="preview" class="form-control" placeholder="Title">
-                                            <%= article.preview %>
-                                    </textarea>
+                                    <label> Résumé </label>
+                              
+                                    <input type="text" value="<%= article.preview %>" maxlength="40" name="title" class="form-control" placeholder="Title">
+                                       
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Contenu</h4>
-                                    <textarea type="text" row="5" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
+                                    <label> Contenu </label>
+                                    <textarea type="text" row="10" value="<%= article.content %>" name="content" class="form-control" placeholder="Title">
                                             <%= article.content %>
                                     </textarea>
                                 </div>
