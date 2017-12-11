@@ -1,5 +1,8 @@
+
 var express = require('express');
 var app = express();
+const dotEnv = require('dotenv').load();
+
 var multer = require('multer')
 var constants = require('constants');
 var constant = require('./config/constants');
@@ -15,7 +18,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
-const dotEnv = require('dotenv').load();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
